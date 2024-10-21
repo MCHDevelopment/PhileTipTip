@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Start the main activity after the splash screen duration
-                Intent intent = new Intent(MainActivity.this, Menu.class);
+                Intent intent = new Intent(MainActivity.this, PhileMenue.class);
                 startActivity(intent);
                 finish();
             }

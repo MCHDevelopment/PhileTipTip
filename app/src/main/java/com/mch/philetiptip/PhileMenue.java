@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Menue extends AppCompatActivity {
+public class PhileMenue extends AppCompatActivity {
 //https://www.youtube.com/watch?v=6RtF_mbHcEc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class Menue extends AppCompatActivity {
         buttonMeldung.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(Menue.this, NeueMeldung.class));
+                startActivity(new Intent(PhileMenue.this, NeueMeldung.class));
             }
         });
     }
@@ -48,7 +48,7 @@ public class Menue extends AppCompatActivity {
         buttonProjekte.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(Menue.this, Uebersicht.class));
+                startActivity(new Intent(PhileMenue.this, Uebersicht.class));
             }
         });
     }
