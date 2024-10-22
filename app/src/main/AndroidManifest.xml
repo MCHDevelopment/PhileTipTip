@@ -13,6 +13,12 @@
         android:theme="@style/Theme.PhileTipTip"
         tools:targetApi="31">
         <activity
+            android:name=".DatenschutzActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ImpressumActivity"
+            android:exported="false" />
+        <activity
             android:name=".Adresseingabe"
             android:exported="false" />
         <activity

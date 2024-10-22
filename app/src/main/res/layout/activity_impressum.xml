@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/phileGreen"
+    android:orientation="vertical"
+    tools:context=".ImpressumActivity">
+
+    <!-- Home Button -->
+    <ImageButton
+        android:id="@+id/button_home"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_background"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/home"
+        android:contentDescription="Home" />
+
+    <!-- Impressum Header -->
+    <TextView
+        android:id="@+id/impressum_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="Impressum"
+        android:background="@drawable/rounded_background"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Impressum Text -->
+    <TextView
+        android:id="@+id/impressum_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_background"
+        android:padding="16dp"
+        android:text="Philetairus Immobilien GmbH\nPhiletairus Platz 42\n65555 Limburg an der Lahn\nTelefon: 06431-0"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+</LinearLayout>
