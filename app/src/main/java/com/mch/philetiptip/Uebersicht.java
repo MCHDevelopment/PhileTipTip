@@ -33,12 +33,12 @@ public class Uebersicht extends AppCompatActivity {
     }
 
     private void configureHauptmenueButton(){
-        Button buttonHauptmenue = findViewById(R.id.button_melden);
+        /*Button buttonHauptmenue = findViewById(R.id.button_melden);
         buttonHauptmenue.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 startActivity(new Intent(Uebersicht.this, PhileMenue.class));
             }
-        });
+        });*/
     }
 }

@@ -5,6 +5,9 @@
     <string name="erfasstext">Bitte erfassen Sie den Schädlingsbefall oder Unkrautbewuchs.</string>
     <string name="willkommentext">Willkommen bei PhileTipTip</string>
     <string name="logo_description">PhileTipTip Logo</string>
+    <string name="impressum">Impressum</string>
+    <string name="datenschutz">Datenschutz</string>
+    <string name="kontakt">Kontakt</string>
 
     <string-array name="options_array">
         <item>Sonstige</item>

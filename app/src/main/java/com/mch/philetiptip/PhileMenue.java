@@ -21,7 +21,7 @@ public class PhileMenue extends AppCompatActivity {
 
         configureButtons();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.menu_main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -34,7 +34,7 @@ public class PhileMenue extends AppCompatActivity {
     }
 
     private void configureMeldungButton(){
-        Button buttonMeldung = findViewById(R.id.button_melden);
+        Button buttonMeldung = findViewById(R.id.button_meldung_machen);
         buttonMeldung.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -44,7 +44,7 @@ public class PhileMenue extends AppCompatActivity {
     }
 
     private void configureUebersichtButton(){
-        Button buttonProjekte = findViewById(R.id.button_projekte);
+        Button buttonProjekte = findViewById(R.id.button_meldungen_einsehen);
         buttonProjekte.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

@@ -2,26 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/menu_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/phileGreen"
     android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/phileGreen"
     tools:context=".PhileMenue">
 
+    <!-- "Meldung machen" Button -->
     <Button
-        android:id="@+id/button_melden"
+        android:id="@+id/button_meldung_machen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/phileBeige"
         android:text="Meldung machen"
-        android:textColor="@color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
+    <!-- "Meldungen einsehen" Button -->
     <Button
-        android:id="@+id/button_projekte"
+        android:id="@+id/button_meldungen_einsehen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/phileBeige"
         android:text="Meldungen einsehen"
-        android:textColor="@color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:layout_marginBottom="32dp" /> <!-- Etwas größerer Freiraum hier -->
+
+    <!-- Freiraum zwischen den oberen und unteren Buttons -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp" />
+
+    <!-- "Impressum" Button -->
+    <Button
+        android:id="@+id/button_impressum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/phileBeige"
+        android:text="@string/impressum"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- "Datenschutz" Button -->
+    <Button
+        android:id="@+id/button_datenschutz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/phileBeige"
+        android:text="@string/datenschutz"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- "Kontakt" Button -->
+    <Button
+        android:id="@+id/button_kontakt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/phileBeige"
+        android:text="@string/kontakt"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
 </LinearLayout>

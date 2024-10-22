@@ -9,12 +9,4 @@
     android:orientation="vertical"
     tools:context=".Uebersicht">
 
-    <Button
-        android:id="@+id/button_hauptmenue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/phileBeige"
-        android:text="Zum Hauptmenü"
-        android:textColor="@color/black" />
-
 </LinearLayout>

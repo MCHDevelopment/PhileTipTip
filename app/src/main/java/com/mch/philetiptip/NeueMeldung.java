@@ -19,26 +19,10 @@ public class NeueMeldung extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_neue_meldung);
 
-        configureButtons();
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
-    }
-
-    private void configureButtons(){
-        configureHauptmenueButton();
-    }
-
-    private void configureHauptmenueButton(){
-        Button buttonHauptmenue = findViewById(R.id.button_hauptmenue);
-        buttonHauptmenue.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(NeueMeldung.this, PhileMenue.class));
-            }
         });
     }
 }
