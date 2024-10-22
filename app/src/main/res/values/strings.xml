@@ -11,6 +11,7 @@
     <string name="datenverarbeitung">3. Datenverarbeitung</string>
     <string name="datenerhebung">2. Datenerhebung</string>
     <string name="allgemeines">1. Allgemeines</string>
+    <string name="kontakttext">Bitte nutzen Sie dieses Kontaktformular nur bei Fragen und Anregungen zur App PhileTipTip. Meldungen die Grünflächen betreffen senden Sie bitte über den dafür vorgesehenen Prozess ab. Andere Anfragen richten Sie bitte an die dafür zuständigen Kontaktpersonen im Immobilienmanagement.</string>
 
     <string-array name="options_array">
         <item>Sonstige</item>

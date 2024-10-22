@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/impressum_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/phileGreen"
+    android:id="@+id/kontakt_main"
     android:orientation="vertical"
-    tools:context=".ImpressumActivity">
+    tools:context=".KontaktActivity">
 
     <!-- Home Button -->
     <ImageButton
@@ -23,29 +23,56 @@
         android:src="@drawable/home"
         android:contentDescription="Home" />
 
-    <!-- Impressum Header -->
+    <!-- Kontakt Header -->
     <TextView
-        android:id="@+id/impressum_header"
+        android:id="@+id/kontakt_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:text="Impressum"
+        android:text="Kontakt"
         android:background="@drawable/rounded_background"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Impressum Text -->
+    <!-- Hinweis Text -->
     <TextView
-        android:id="@+id/impressum_text"
+        android:id="@+id/hinweis_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/rounded_background"
         android:padding="16dp"
-        android:text="Philetairus Immobilien GmbH\nPhiletairus Platz 42\n65555 Limburg an der Lahn\nTelefon: 06431-0"
+        android:text="@string/kontakttext"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
+
+    <!-- Eingabebereich -->
+    <EditText
+        android:id="@+id/contact_input"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_background"
+        android:padding="16dp"
+        android:hint="Ihre Nachricht"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:gravity="top" />
+
+    <!-- Mail Icon Button -->
+    <ImageButton
+        android:id="@+id/button_send_mail"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/button_background"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/mail"
+        android:contentDescription="Nachricht senden" />
 
 </LinearLayout>

@@ -31,6 +31,9 @@ public class PhileMenue extends AppCompatActivity {
     private void configureButtons(){
         configureMeldungButton();
         configureUebersichtButton();
+        configureImpressumButton();
+        configureKontaktButton();
+        configureDatenschutzButton();
     }
 
     private void configureMeldungButton(){
@@ -49,6 +52,37 @@ public class PhileMenue extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(PhileMenue.this, Uebersicht.class));
+            }
+        });
+    }
+
+    private void configureImpressumButton(){
+        Button buttonImpressum = findViewById(R.id.button_impressum);
+        buttonImpressum.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(PhileMenue.this, ImpressumActivity.class));
+            }
+        });
+    }
+
+    private void configureKontaktButton(){
+        Button buttonKontakt = findViewById(R.id.button_kontakt);
+        buttonKontakt.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(PhileMenue.this, KontaktActivity.class));
+            }
+        });
+    }
+
+
+    private void configureDatenschutzButton(){
+        Button buttonDatenschutz = findViewById(R.id.button_datenschutz);
+        buttonDatenschutz.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(PhileMenue.this, DatenschutzActivity.class));
             }
         });
     }
