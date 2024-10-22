@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PhileTipTip"
         tools:targetApi="31">
         <activity
+            android:name=".Adresseingabe"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>

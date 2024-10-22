@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/phileGreen"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Uebersicht">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Willkommen bei PhileTipTip"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="16dp" />
+
+    <!-- Textbereich -->
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bitte erfassen Sie den Schädlingsbefall oder Unkrautbewuchs."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:padding="8dp" />
+
+    <!-- Button zum Hauptmenü -->
+    <Button
+        android:id="@+id/button_hauptmenue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/phileBeige"
+        android:text="Zum Hauptmenü"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

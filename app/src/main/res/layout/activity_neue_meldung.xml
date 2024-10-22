@@ -7,14 +7,92 @@
     android:layout_height="match_parent"
     android:background="@color/phileGreen"
     android:orientation="vertical"
-    tools:context=".NeueMeldung">
+    android:padding="16dp"
+    tools:context=".Uebersicht">
 
-    <Button
-        android:id="@+id/button_hauptmenue"
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/philetiptipicon"
+        android:layout_gravity="center"
+        android:contentDescription="@string/logo_description" />
+
+    <!-- Header und Info Text mit abgerundetem Hintergrund -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/phileBeige"
-        android:text="Zum Hauptmenü"
-        android:textColor="@color/black" />
+        android:background="@drawable/rounded_background"
+        android:padding="16dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/willkommentext"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/erfasstext"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_below="@id/header"
+            android:padding="8dp" />
+
+        <!-- Dropdown Spinner -->
+        <Spinner
+            android:id="@+id/type_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info_text"
+            android:layout_marginTop="16dp" />
+
+    </RelativeLayout>
+
+    <!-- Icon Buttons für Navigation mit Abstand und abgerundetem Hintergrund -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <!-- Home Button links mit abgerundetem Hintergrund -->
+        <ImageButton
+            android:id="@+id/button_home"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/button_background"
+        android:src="@drawable/home"
+        android:contentDescription="@string/home"
+        android:layout_gravity="start"
+        android:layout_weight="1" />
+
+        <!-- Platzhalter für Abstand zwischen den Buttons -->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <!-- Weiter Button rechts mit abgerundetem Hintergrund -->
+        <ImageButton
+            android:id="@+id/button_continue"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/button_background"
+        android:src="@drawable/vor"
+        android:contentDescription="@string/weiter"
+        android:layout_gravity="end"
+        android:layout_weight="1" />
+
+    </LinearLayout>
 
 </LinearLayout>
