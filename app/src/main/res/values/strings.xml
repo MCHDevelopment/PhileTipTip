@@ -12,6 +12,14 @@
     <string name="datenerhebung">2. Datenerhebung</string>
     <string name="allgemeines">1. Allgemeines</string>
     <string name="kontakttext">Bitte nutzen Sie dieses Kontaktformular nur bei Fragen und Anregungen zur App PhileTipTip. Meldungen die Grünflächen betreffen senden Sie bitte über den dafür vorgesehenen Prozess ab. Andere Anfragen richten Sie bitte an die dafür zuständigen Kontaktpersonen im Immobilienmanagement.</string>
+    <string name="adressText">Bitte geben Sie die Adresse des Befalls/Bewuchses ein. Sie können alternativ auch die GPS Funktion nutzen.</string>
+    <string name="strasse">Straße</string>
+    <string name="hausnummer">Hausnummer</string>
+    <string name="postleitzahl">Postleitzahl</string>
+    <string name="ort">Ort</string>
+    <string name="zurueck">Zurück</string>
+    <string name="fototext">Bitte machen Sie ein Foto auf dem man den Befall/den Bewuchs möglichst deutlich erkennen kann. Sie können auch ein aussagekräftiges Bild aus Ihrer Gallerie auswählen oder diesen Punkt überspringen. Je besser dieses Bild ist, desto besser können sich unsere Außendienstmitarbeiter auf den Einsatz vorbereiten.</string>
+    <string name="prueftext">Bitte überprüfen Sie Ihre Angaben. Sie können zu jedem der Schritte zurückkehren um die Angaben zu korrigieren.</string>
 
     <string-array name="options_array">
         <item>Sonstige</item>

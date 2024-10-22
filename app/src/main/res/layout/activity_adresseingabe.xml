@@ -2,12 +2,155 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/phileGreen"
+    android:id="@+id/adresseingabe_main"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".Uebersicht">
+    tools:context=".Adresseingabe">
+
+
+    <!-- Home Button -->
+    <ImageButton
+        android:id="@+id/button_home"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_background"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/home"
+        android:contentDescription="Home" />
+
+    <!-- Textblock -->
+    <TextView
+        android:id="@+id/text_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_background"
+        android:padding="16dp"
+        android:text="@string/adressText"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <!-- Formular und GPS Icon Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Formular -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Straße -->
+            <EditText
+                android:id="@+id/street_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_background"
+                android:padding="10dp"
+                android:hint="@string/strasse"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <!-- Hausnummer -->
+            <EditText
+                android:id="@+id/house_number_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_background"
+                android:padding="10dp"
+                android:hint="@string/hausnummer"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <!-- Postleitzahl -->
+            <EditText
+                android:id="@+id/postal_code_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_background"
+                android:padding="10dp"
+                android:hint="@string/postleitzahl"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <!-- Ort -->
+            <EditText
+                android:id="@+id/city_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_background"
+                android:padding="10dp"
+                android:hint="@string/ort"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- GPS Icon Button -->
+        <ImageButton
+            android:id="@+id/button_gps"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/button_background"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/gps"
+            android:contentDescription="GPS nutzen" />
+    </LinearLayout>
+
+    <!-- Icon Buttons für Zurück und Weiter -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <!-- Zurück Button -->
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/button_background"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/zurueck"
+            android:contentDescription="@string/zurueck" />
+
+        <!-- Platzhalter für den Abstand -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <!-- Weiter Button -->
+        <ImageButton
+            android:id="@+id/button_continue"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/button_background"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/vor"
+            android:contentDescription="Weiter" />
+    </LinearLayout>
 
 </LinearLayout>
