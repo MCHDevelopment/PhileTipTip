@@ -1,0 +1,66 @@
+\section{Anforderungsanalyse}
+
+\subsection{Funktionale Anforderungen}
+
+Die Funktionalen Anforderungen beantworten die Frage Was das Programm leisten soll.
+
+\begin{itemize}
+  \item Erfassung von Meldungen über Schädlingsbefall
+  \item Speichern der Meldungen
+  \item Anzeige und Sortierung dieser Meldungen
+    \item Weiterleitung der Meldungen an die Grünflächenabteilung
+    \item Benachrichtigungen an Nutzer über Bearbeitungsstatus
+\end{itemize}
+
+\subsection{Nicht-funktionale Anforderungen}
+
+Die Nichtfunktionalen Anforderungen beantworten die Frage: Wie soll das Programm diese Anforderungen erfüllen?
+
+\begin{itemize}
+    \item Benutzerfreundlichkeit
+    \item Performance und Sicherheit
+  \item  Einfache Bedienbarkeit der App
+  \item Leichte Wartbarkeit der App
+  \item Leichte Erweiterbarkeit der App
+  \item Zuverlässiges Funktionieren der App
+  \item Datensicherheit und Datenschutz
+  \item Schnelle Reaktionszeiten
+  \item Niedriger Datenverbrauch im Mobilbetrieb
+\end{itemize}
+
+\subsection{Technische Anforderungen}
+\begin{itemize}
+    \item Android-Kompatibilität.
+    \item Daten On-Premises, keine Cloud
+\end{itemize}
+
+\newpage
+
+\subsection{User Stories}
+\label{subsec:userStories}
+\begin{table}[ht]
+    \centering
+    \begin{tabularx}{\textwidth}{|X|X|X|} 
+        \hline
+        Als [Rolle] & möchte ich [Funktionalität] & damit [Grund]\\
+        \hline
+        Mieter / Eigentümer & Schädlingsbefall / Unkrautbewuchs melden können & die Gärtner diesen zeitnah beseitigen\\
+        \hline
+        Landschaftsarchitekt & Mietermeldungen einsehen können & zu analysieren und Handlungsanweisungen geben zu können\\
+        \hline
+        Landschaftsarchitekt & Meldungen als Arbeitsanweisung an mein Team weiterleiten können & arbeiten zu koordinieren\\
+        \hline
+        Landschaftsarchitekt & einsehen können, woran mein Team gerade arbeitet & zu priorisieren und gegebenenfalls einzugreifen\\
+        \hline
+        Gärtner & einsehen können, wo ich arbeiten soll & den Einsatzort schnell finde \\
+        \hline
+        Gärtner & einsehen können, woran ich arbeiten soll & die Arbeit vorbereiten kann (passenede Herbi/Pestizide) \\
+        \hline
+        Abteilungsleiter Aussenarbeiten& einsehen können, woran die verschiedenen Teams gerade arbeiten & Arbeiten zu koordinieren und Absprachen mit den Landschaftsarchitekten halten zu können.\\
+        \hline
+        Abteilungsleiter Aussenarbeiten& die Meldungen über Befall und Bewuchs einsehen können & eventuelle Muster zu erkennen und großflächige Ausbreitung von Unkraut und Schädlingen zu verhindern.\\
+        \hline
+    \end{tabularx}
+    \caption{Ausgewählte User Stories}
+    \label{tab:userStories}
+\end{table}

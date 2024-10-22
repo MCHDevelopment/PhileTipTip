@@ -1,0 +1,44 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\onehalfspacing
+\usepackage{hyperref}
+
+% Hyperref-Optionen, um Rahmen und Farben zu entfernen
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, % Farbe der internen Links (z.B. im Inhaltsverzeichnis)
+    urlcolor=blue,   % Farbe der URLs
+    citecolor=black, % Farbe der Zitate
+    filecolor=black  % Farbe von Datei-Links
+}
+
+\title{Projekthandbuch: PhileTipTip}
+\author{Matthias Hochmuth}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\input{001_Einleitung}
+\input{002_Projektorganisation}
+\input{003_Anforderungsanalyse}
+\input{004_AppDesign}
+\input{005_TechnischeArchitektur}
+\input{006_Implementierung}
+\input{007_Qualitaetssicherung}
+\input{008_Datenschutz}
+\input{009_Risiken}
+\input{010_Ausblick}
+
+\end{document}
