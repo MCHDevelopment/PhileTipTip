@@ -51,7 +51,7 @@ public class MenueActivity extends AppCompatActivity {
 
     private void starteMeldungsProzess(){
         //Wird hier erstellt - zur NeueMeldungActivity koennte zurueckgekehrt werden
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplication();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         phileTipTipMain.CreateMeldung();
     }
 

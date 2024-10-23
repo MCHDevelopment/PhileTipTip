@@ -125,12 +125,12 @@ public class PruefenActivity extends MeldungsprozessActivity {
     private void projektEintragen(){
         //TODO: Meldung in Datenbank anlegen
 
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         phileTipTipMain.getMeldungsHolder().addMeldung(phileTipTipMain.getMeldung());
     }
 
     private void fuelleInhalte(){
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         fuelleMeldungsfeld(phileTipTipMain);
         fuelleAdressfeld(phileTipTipMain);
     }

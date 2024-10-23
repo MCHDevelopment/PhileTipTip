@@ -30,19 +30,14 @@ public class AdresseingabeActivity extends MeldungsprozessActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_adresseingabe);
 
+        configureButtons();
+        configureTextFields();
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.adresseingabe_main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        configureButtons();
-        configureTextFields();
     }
 
     private void configureTextFields() {
@@ -56,9 +51,9 @@ public class AdresseingabeActivity extends MeldungsprozessActivity {
         editTextOrt = findViewById(R.id.city_input);
 
         //TODO: Vorbelegung besser
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         String tempOrtText = phileTipTipMain.getMeldung().getMeldungAdresse().getOrt();
-        if(tempOrtText.isEmpty())
+        if(tempOrtText.isEmpty() || tempOrtText.equals("keine Eingabe"))
         {
             editTextOrt.setText("");
             editTextOrt.setHint("Ort");
@@ -71,7 +66,7 @@ public class AdresseingabeActivity extends MeldungsprozessActivity {
         editTextPostleitzahl = findViewById(R.id.postal_code_input);
 
         //TODO: Vorbelegung besser
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         int tempPostleitzahl = phileTipTipMain.getMeldung().getMeldungAdresse().getPostleitzahl();
         if(tempPostleitzahl <= 0)
         {
@@ -86,7 +81,7 @@ public class AdresseingabeActivity extends MeldungsprozessActivity {
         editTextHausnummer = findViewById(R.id.house_number_input);
 
         //TODO: Vorbelegung besser
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         int tempHausnummer = phileTipTipMain.getMeldung().getMeldungAdresse().getHausNummer();
         if(tempHausnummer <= 0)
         {
@@ -101,9 +96,9 @@ public class AdresseingabeActivity extends MeldungsprozessActivity {
         editTextStrasse = findViewById(R.id.street_input);
 
         //TODO: Vorbelegung besser
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         String tempStrasseText = phileTipTipMain.getMeldung().getMeldungAdresse().getStrasse();
-        if(tempStrasseText.isEmpty())
+        if(tempStrasseText.isEmpty() || tempStrasseText.equals("keine Eingabe"))
         {
             editTextStrasse.setText("");
             editTextStrasse.setHint("Strasse");
@@ -168,7 +163,7 @@ public class AdresseingabeActivity extends MeldungsprozessActivity {
 
         adresse.setOrt(editTextOrt.getText().toString());
 
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         phileTipTipMain.getMeldung().setMeldungsAdresse(adresse);
     }
 

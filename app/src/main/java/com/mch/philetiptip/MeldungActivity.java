@@ -36,20 +36,15 @@ public class MeldungActivity extends MeldungsprozessActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_neue_meldung);
 
+        configureButtons();
+        configureSpinner();
+        configureTextFields();
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        configureButtons();
-        configureSpinner();
-        configureTextFields();
     }
 
     private void configureSpinner() {
@@ -60,7 +55,7 @@ public class MeldungActivity extends MeldungsprozessActivity {
         typeSpinner.setAdapter(adapter);
 
         //TODO: Vorbelegung besser
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         Meldungsart tempMeldungsart = phileTipTipMain.getMeldung().getMeldungsart();
         typeSpinner.setSelection(tempMeldungsart.getIndex());
     }
@@ -73,7 +68,7 @@ public class MeldungActivity extends MeldungsprozessActivity {
         editTextMeldung = findViewById(R.id.meldung_input);
 
         //TODO: Vorbelegung besser
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         String tempMeldungsText = phileTipTipMain.getMeldung().getMeldungstext();
         if(tempMeldungsText.isEmpty())
         {
@@ -105,7 +100,7 @@ public class MeldungActivity extends MeldungsprozessActivity {
     }
 
     private void fuelleMeldung(){
-        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         phileTipTipMain.getMeldung().setMeldungstext(editTextMeldung.getText().toString());
         phileTipTipMain.getMeldung().setMeldungsart(getSelectedMeldungsart());
         // Toast
