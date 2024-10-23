@@ -14,8 +14,8 @@
         android:id="@+id/button_home"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_gravity="end"
-        android:layout_marginEnd="20dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_background"
         android:padding="10dp"
@@ -68,6 +68,38 @@
             android:contentDescription="Adresse bearbeiten" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Dummy-Adresse -->
+        <TextView
+            android:id="@+id/text_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Starker Unkrautbewuchs neben dem Zugangsweg"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <!-- Adresse bearbeiten Icon Button -->
+        <ImageButton
+            android:id="@+id/button_edit_message"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/button_background"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/edit"
+            android:contentDescription="Nachricht bearbeiten" />
+    </LinearLayout>
+
     <!-- Bereich für das Bild und den Icon Button -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,20 +136,20 @@
             android:scaleType="centerInside"
             android:src="@drawable/imageedit"
             android:contentDescription="Bild bearbeiten" />
+        <!-- Zentrierter Icon Button -->
+        <ImageButton
+            android:id="@+id/button_submit"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_background"
+            android:contentDescription="Bestätigen"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/submit" />
     </LinearLayout>
 
-    <!-- Zentrierter Icon Button -->
-    <ImageButton
-        android:id="@+id/button_submit"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/button_background"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/submit_icon"
-        android:contentDescription="Bestätigen" />
 
     <!-- Icon Buttons für Zurück und Weiter -->
     <LinearLayout
@@ -138,25 +170,6 @@
             android:scaleType="centerInside"
             android:src="@drawable/zurueck"
             android:contentDescription="Zurück" />
-
-        <!-- Platzhalter für den Abstand -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <!-- Weiter Button -->
-        <ImageButton
-            android:id="@+id/button_continue"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/button_background"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/vor"
-            android:contentDescription="Weiter" />
     </LinearLayout>
 
 </LinearLayout>
