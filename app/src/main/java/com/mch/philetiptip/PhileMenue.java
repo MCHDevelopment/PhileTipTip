@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.mch.philetiptip.Logic.PhileTipTipMain;
+
 public class PhileMenue extends AppCompatActivity {
 //https://www.youtube.com/watch?v=6RtF_mbHcEc
     @Override
@@ -41,9 +43,15 @@ public class PhileMenue extends AppCompatActivity {
         buttonMeldung.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                starteMeldungsProzess();
                 startActivity(new Intent(PhileMenue.this, NeueMeldung.class));
             }
         });
+    }
+
+    private void starteMeldungsProzess(){
+        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplication();
+        phileTipTipMain.CreateMeldung();
     }
 
     private void configureUebersichtButton(){

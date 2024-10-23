@@ -3,6 +3,7 @@ package com.mch.philetiptip;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -12,7 +13,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.mch.philetiptip.Logic.Adresse;
+import com.mch.philetiptip.Logic.PhileTipTipMain;
+
 public class Adresseingabe extends AppCompatActivity {
+
+    private EditText editTextOrt;
+    private EditText editTextPostleitzahl;
+    private EditText editTextHausnummer;
+    private EditText editTextStrasse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +30,36 @@ public class Adresseingabe extends AppCompatActivity {
         setContentView(R.layout.activity_adresseingabe);
 
         configureButtons();
+        configureTextFields();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.adresseingabe_main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void configureTextFields() {
+        configureStrasse();
+        configureHausnummer();
+        configurePostleitzahl();
+        configureOrt();
+    }
+
+    private void configureOrt() {
+        editTextOrt = findViewById(R.id.city_input);
+    }
+
+    private void configurePostleitzahl() {
+        editTextPostleitzahl = findViewById(R.id.postal_code_input);
+    }
+
+    private void configureHausnummer() {
+        editTextHausnummer = findViewById(R.id.house_number_input);
+    }
+
+    private void configureStrasse() {
+        editTextStrasse = findViewById(R.id.street_input);
     }
 
     private void configureButtons() {
@@ -67,10 +100,23 @@ public class Adresseingabe extends AppCompatActivity {
         buttonWeiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fuelleAdresse();
                 startActivity(new Intent(Adresseingabe.this, FotoActivity.class));
             }
         });
     }
+
+    private void fuelleAdresse(){
+        Adresse adresse = new Adresse();
+        adresse.setStrasse(editTextStrasse.getText().toString());
+        //TODO: Parsen und Validieren der Eingabe
+        adresse.setHausNummer(42);//editTextHausnummer.getText().toString());
+        adresse.setPostleitzahl(65611);//editTextHausnummer.getText().toString());
+
+        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        phileTipTipMain.getMeldung().setMeldungsAdresse(adresse);
+    }
+
 
     private void configureZurueckButton() {
         ImageButton buttonZurueck = findViewById(R.id.button_back);
