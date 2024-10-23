@@ -31,6 +31,8 @@ public class FotoActivity extends AppCompatActivity {
     private void configureButtons(){
         configureHomeButton();
         configureWeiterButton();
+        configureFotoButton();
+        configureGalleryButton();
         configureZurueckButton();
     }
 
@@ -44,12 +46,32 @@ public class FotoActivity extends AppCompatActivity {
         });
     }
 
+    private void configureFotoButton(){
+        ImageButton buttonFoto = findViewById(R.id.button_camera);
+        buttonFoto.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //TODO: Foto machen
+            }
+        });
+    }
+
+    private void configureGalleryButton(){
+        ImageButton buttonGallerie = findViewById(R.id.button_gallery);
+        buttonGallerie.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //TODO: Gallerie oeffnen Bild auswaehlen
+            }
+        });
+    }
+
     private void configureWeiterButton(){
         ImageButton buttonWeiter = findViewById(R.id.button_continue);
         buttonWeiter.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(FotoActivity.this, Adresseingabe.class));
+                startActivity(new Intent(FotoActivity.this, PruefenActivity.class));
             }
         });
     }

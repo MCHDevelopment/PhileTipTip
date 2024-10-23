@@ -31,6 +31,7 @@ public class Adresseingabe extends AppCompatActivity {
     private void configureButtons(){
         configureHomeButton();
         configureWeiterButton();
+        configureGPSButton();
         configureZurueckButton();
     }
 
@@ -40,6 +41,16 @@ public class Adresseingabe extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(Adresseingabe.this, PhileMenue.class));
+            }
+        });
+    }
+
+    private void configureGPSButton(){
+        ImageButton buttonGPS = findViewById(R.id.button_gps);
+        buttonGPS.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //TODO: GPS Daten einholen, Adresse fuellen
             }
         });
     }
@@ -55,8 +66,8 @@ public class Adresseingabe extends AppCompatActivity {
     }
 
     private void configureZurueckButton(){
-        ImageButton buttonWeiter = findViewById(R.id.button_back);
-        buttonWeiter.setOnClickListener(new View.OnClickListener(){
+        ImageButton buttonZurueck = findViewById(R.id.button_back);
+        buttonZurueck.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 startActivity(new Intent(Adresseingabe.this, NeueMeldung.class));
