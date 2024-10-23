@@ -8,7 +8,7 @@
     android:background="@color/phileGreen"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".Uebersicht">
+    tools:context=".UebersichtActivity">
 
     <!-- Home Button -->
     <ImageButton

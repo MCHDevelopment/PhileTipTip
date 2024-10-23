@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
-public class PhileMenue extends AppCompatActivity {
+public class MenueActivity extends AppCompatActivity {
 //https://www.youtube.com/watch?v=6RtF_mbHcEc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class PhileMenue extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 starteMeldungsProzess();
-                startActivity(new Intent(PhileMenue.this, NeueMeldung.class));
+                startActivity(new Intent(MenueActivity.this, MeldungActivity.class));
             }
         });
     }
@@ -60,7 +60,7 @@ public class PhileMenue extends AppCompatActivity {
         buttonProjekte.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(PhileMenue.this, Uebersicht.class));
+                startActivity(new Intent(MenueActivity.this, UebersichtActivity.class));
             }
         });
     }
@@ -70,7 +70,7 @@ public class PhileMenue extends AppCompatActivity {
         buttonImpressum.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(PhileMenue.this, ImpressumActivity.class));
+                startActivity(new Intent(MenueActivity.this, ImpressumActivity.class));
             }
         });
     }
@@ -80,7 +80,7 @@ public class PhileMenue extends AppCompatActivity {
         buttonKontakt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(PhileMenue.this, KontaktActivity.class));
+                startActivity(new Intent(MenueActivity.this, KontaktActivity.class));
             }
         });
     }
@@ -91,7 +91,7 @@ public class PhileMenue extends AppCompatActivity {
         buttonDatenschutz.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(PhileMenue.this, DatenschutzActivity.class));
+                startActivity(new Intent(MenueActivity.this, DatenschutzActivity.class));
             }
         });
     }

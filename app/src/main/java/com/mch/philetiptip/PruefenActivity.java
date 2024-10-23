@@ -7,16 +7,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.mch.philetiptip.Logic.Meldung;
+import com.mch.philetiptip.Logic.MeldungsprozessActivity;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
-public class PruefenActivity extends AppCompatActivity {
+public class PruefenActivity extends MeldungsprozessActivity {
 
     private TextView textMeldung;
     private TextView textAdresse;
@@ -59,15 +59,9 @@ public class PruefenActivity extends AppCompatActivity {
         configureAdressEditButton();
         configureSubmitButton();
     }
-
+    
     private void configureHomeButton(){
-        ImageButton buttonHome = findViewById(R.id.button_home);
-        buttonHome.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(PruefenActivity.this, PhileMenue.class));
-            }
-        });
+        configureHomeButton(R.id.button_home, MenueActivity.class);
     }
 
     private void configureMeldungEditButton(){
@@ -95,7 +89,7 @@ public class PruefenActivity extends AppCompatActivity {
         buttonAdressEdit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(PruefenActivity.this, Adresseingabe.class));
+                startActivity(new Intent(PruefenActivity.this, AdresseingabeActivity.class));
             }
         });
     }
@@ -115,10 +109,19 @@ public class PruefenActivity extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                projektEintragen();
+
                 //TODO: Meldung in Datenbank anlegen
-                startActivity(new Intent(PruefenActivity.this, PhileMenue.class));
+                startActivity(new Intent(PruefenActivity.this, MenueActivity.class));
             }
         });
+    }
+
+    private void projektEintragen(){
+        //TODO: Meldung in Datenbank anlegen
+
+        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        phileTipTipMain.getMeldungsHolder().addMeldung(phileTipTipMain.getMeldung());
     }
 
     private void fuelleInhalte(){

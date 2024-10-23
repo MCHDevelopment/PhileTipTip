@@ -7,7 +7,7 @@
     android:background="@color/phileGreen"
     android:id="@+id/adresseingabe_main"
     android:orientation="vertical"
-    tools:context=".Adresseingabe">
+    tools:context=".AdresseingabeActivity">
 
 
     <!-- Home Button -->

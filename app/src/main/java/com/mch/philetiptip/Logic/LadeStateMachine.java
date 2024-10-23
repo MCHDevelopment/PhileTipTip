@@ -1,4 +1,4 @@
-package com.mch.philetiptip;
+package com.mch.philetiptip.Logic;
 
 public class LadeStateMachine {
     private int currentState = 0;

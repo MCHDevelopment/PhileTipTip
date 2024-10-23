@@ -15,9 +15,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.mch.philetiptip.Logic.Adresse;
 import com.mch.philetiptip.Logic.Helper;
+import com.mch.philetiptip.Logic.MeldungsprozessActivity;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
-public class Adresseingabe extends AppCompatActivity {
+public class AdresseingabeActivity extends MeldungsprozessActivity {
 
     private EditText editTextOrt;
     private EditText editTextPostleitzahl;
@@ -70,14 +71,8 @@ public class Adresseingabe extends AppCompatActivity {
         configureZurueckButton();
     }
 
-    private void configureHomeButton() {
-        ImageButton buttonHome = findViewById(R.id.button_home);
-        buttonHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Adresseingabe.this, PhileMenue.class));
-            }
-        });
+    private void configureHomeButton(){
+        configureHomeButton(R.id.button_home, MenueActivity.class);
     }
 
     private void configureGPSButton() {
@@ -88,7 +83,7 @@ public class Adresseingabe extends AppCompatActivity {
                 //TODO: GPS Daten einholen, Adresse fuellen
 
                 // Toast
-                Toast.makeText(Adresseingabe.this, // Android Context
+                Toast.makeText(AdresseingabeActivity.this, // Android Context
                                 "onClick für GPS-Button aufgerufen", // Toast-Nachricht
                                 Toast.LENGTH_LONG) // Anzeigedauer
                         .show(); // Toast anzeigen
@@ -102,7 +97,7 @@ public class Adresseingabe extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fuelleAdresse();
-                startActivity(new Intent(Adresseingabe.this, FotoActivity.class));
+                startActivity(new Intent(AdresseingabeActivity.this, FotoActivity.class));
             }
         });
     }
@@ -135,7 +130,7 @@ public class Adresseingabe extends AppCompatActivity {
         buttonZurueck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Adresseingabe.this, NeueMeldung.class));
+                startActivity(new Intent(AdresseingabeActivity.this, MeldungActivity.class));
             }
         });
     }

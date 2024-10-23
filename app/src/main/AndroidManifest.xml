@@ -29,7 +29,7 @@
             android:name=".ImpressumActivity"
             android:exported="false" />
         <activity
-            android:name=".Adresseingabe"
+            android:name=".AdresseingabeActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -50,13 +50,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Uebersicht"
+            android:name=".UebersichtActivity"
             android:exported="false" />
         <activity
-            android:name=".NeueMeldung"
+            android:name=".MeldungActivity"
             android:exported="false" />
         <activity
-            android:name=".PhileMenue"
+            android:name=".MenueActivity"
             android:exported="false" />
     </application>
 

@@ -12,7 +12,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class FotoActivity extends AppCompatActivity {
+import com.mch.philetiptip.Logic.MeldungsprozessActivity;
+
+public class FotoActivity extends MeldungsprozessActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +40,7 @@ public class FotoActivity extends AppCompatActivity {
     }
 
     private void configureHomeButton(){
-        ImageButton buttonHome = findViewById(R.id.button_home);
-        buttonHome.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(FotoActivity.this, PhileMenue.class));
-            }
-        });
+        configureHomeButton(R.id.button_home, MenueActivity.class);
     }
 
     private void configureFotoButton(){
@@ -94,7 +90,7 @@ public class FotoActivity extends AppCompatActivity {
         buttonWeiter.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(FotoActivity.this, Adresseingabe.class));
+                startActivity(new Intent(FotoActivity.this, AdresseingabeActivity.class));
             }
         });
     }
