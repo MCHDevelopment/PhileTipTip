@@ -50,6 +50,7 @@ public class PhileMenue extends AppCompatActivity {
     }
 
     private void starteMeldungsProzess(){
+        //Wird hier erstellt - zur NeueMeldungActivity koennte zurueckgekehrt werden
         PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplication();
         phileTipTipMain.CreateMeldung();
     }

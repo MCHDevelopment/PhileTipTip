@@ -21,6 +21,11 @@
     <string name="fototext">Bitte machen Sie ein Foto auf dem man den Befall/den Bewuchs möglichst deutlich erkennen kann. Sie können auch ein aussagekräftiges Bild aus Ihrer Gallerie auswählen oder diesen Punkt überspringen. Je besser dieses Bild ist, desto besser können sich unsere Außendienstmitarbeiter auf den Einsatz vorbereiten.</string>
     <string name="prueftext">Bitte überprüfen Sie Ihre Angaben. Sie können zu jedem der Schritte zurückkehren um die Angaben zu korrigieren.</string>
     <string name="meldungtext">Ihre Meldung</string>
+    <string name="nachricht_bearbeiten">Nachricht bearbeiten</string>
+    <string name="bild_bearbeiten">Bild bearbeiten</string>
+    <string name="best_tigen">Bestätigen</string>
+    <string name="beispieltext">Starker Unkrautbewuchs neben dem Zugangsweg</string>
+    <string name="beispieladresse">Straße 123\nHausnummer 45\n12345 Beispielstadt</string>
 
     <string-array name="options_array">
         <item>Sonstige</item>

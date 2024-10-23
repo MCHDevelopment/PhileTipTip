@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.mch.philetiptip.Logic.Meldung;
+import com.mch.philetiptip.Logic.Meldungsart;
+import com.mch.philetiptip.Logic.PhileTipTipMain;
+
 public class PruefenActivity extends AppCompatActivity {
+
+    private TextView textMeldung;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +27,22 @@ public class PruefenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pruefen);
 
         configureButtons();
+        configureTextviews();
+        fuelleInhalte();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.pruefen_main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void configureTextviews() {
+        configureMeldungTextview();
+    }
+
+    private void configureMeldungTextview() {
+        textMeldung = findViewById(R.id.text_message);
     }
 
     private void configureButtons(){
@@ -96,5 +113,11 @@ public class PruefenActivity extends AppCompatActivity {
                 startActivity(new Intent(PruefenActivity.this, PhileMenue.class));
             }
         });
+    }
+
+    private void fuelleInhalte(){
+        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        Meldung tempMeldung = phileTipTipMain.getMeldung();
+        textMeldung.setText(tempMeldung.getMeldungstext());
     }
 }

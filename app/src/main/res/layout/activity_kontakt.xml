@@ -50,7 +50,7 @@
 
     <!-- Eingabebereich -->
     <EditText
-        android:id="@+id/contact_input"
+        android:id="@+id/meldung_input"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="16dp"

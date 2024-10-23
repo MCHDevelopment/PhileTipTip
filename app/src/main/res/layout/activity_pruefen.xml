@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Straße 123\nHausnummer 45\n12345 Beispielstadt"
+            android:text="@string/beispieladresse"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
@@ -83,7 +83,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Starker Unkrautbewuchs neben dem Zugangsweg"
+            android:text="@string/beispieltext"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
@@ -97,7 +97,7 @@
             android:padding="10dp"
             android:scaleType="centerInside"
             android:src="@drawable/edit"
-            android:contentDescription="Nachricht bearbeiten" />
+            android:contentDescription="@string/nachricht_bearbeiten" />
     </LinearLayout>
 
     <!-- Bereich für das Bild und den Icon Button -->
@@ -135,7 +135,7 @@
             android:padding="10dp"
             android:scaleType="centerInside"
             android:src="@drawable/imageedit"
-            android:contentDescription="Bild bearbeiten" />
+            android:contentDescription="@string/bild_bearbeiten" />
         <!-- Zentrierter Icon Button -->
         <ImageButton
             android:id="@+id/button_submit"
@@ -144,7 +144,7 @@
             android:layout_gravity="bottom|end"
             android:layout_marginTop="30dp"
             android:background="@drawable/button_background"
-            android:contentDescription="Bestätigen"
+            android:contentDescription="@string/best_tigen"
             android:padding="10dp"
             android:scaleType="centerInside"
             android:src="@drawable/submit" />
@@ -166,7 +166,7 @@
             android:layout_gravity="start"
             android:layout_marginStart="20dp"
             android:background="@drawable/button_background"
-            android:contentDescription="Zurück"
+            android:contentDescription="@string/zurueck"
             android:padding="10dp"
             android:scaleType="centerInside"
             android:src="@drawable/zurueck" />
