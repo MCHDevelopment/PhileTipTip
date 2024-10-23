@@ -13,12 +13,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.mch.philetiptip.Logic.Meldung;
-import com.mch.philetiptip.Logic.Meldungsart;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 public class PruefenActivity extends AppCompatActivity {
 
     private TextView textMeldung;
+    private TextView textAdresse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,11 @@ public class PruefenActivity extends AppCompatActivity {
 
     private void configureTextviews() {
         configureMeldungTextview();
+        configureAdressTextview();
+    }
+
+    private void configureAdressTextview() {
+        textAdresse = findViewById(R.id.text_address);
     }
 
     private void configureMeldungTextview() {
@@ -109,7 +114,7 @@ public class PruefenActivity extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //TODO: Projekt anlegen
+                //TODO: Meldung in Datenbank anlegen
                 startActivity(new Intent(PruefenActivity.this, PhileMenue.class));
             }
         });
@@ -117,6 +122,16 @@ public class PruefenActivity extends AppCompatActivity {
 
     private void fuelleInhalte(){
         PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        fuelleMeldungsfeld(phileTipTipMain);
+        fuelleAdressfeld(phileTipTipMain);
+    }
+
+    private void fuelleAdressfeld(PhileTipTipMain phileTipTipMain) {
+        Meldung tempMeldung = phileTipTipMain.getMeldung();
+        textAdresse.setText(tempMeldung.getMeldungAdresse().getAdressString());
+    }
+
+    private void fuelleMeldungsfeld(PhileTipTipMain phileTipTipMain) {
         Meldung tempMeldung = phileTipTipMain.getMeldung();
         textMeldung.setText(tempMeldung.getMeldungstext());
     }

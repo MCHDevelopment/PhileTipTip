@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.mch.philetiptip.Logic.Adresse;
+import com.mch.philetiptip.Logic.Helper;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 public class Adresseingabe extends AppCompatActivity {
@@ -110,8 +111,19 @@ public class Adresseingabe extends AppCompatActivity {
         Adresse adresse = new Adresse();
         adresse.setStrasse(editTextStrasse.getText().toString());
         //TODO: Parsen und Validieren der Eingabe
-        adresse.setHausNummer(42);//editTextHausnummer.getText().toString());
-        adresse.setPostleitzahl(65611);//editTextHausnummer.getText().toString());
+
+        Integer tempHausnummer = Helper.parseIntOrNull(editTextHausnummer.getText().toString());
+        if(tempHausnummer != null){
+            adresse.setHausNummer(tempHausnummer);
+        }
+
+        Integer tempPostleitzahl = Helper.parseIntOrNull(editTextPostleitzahl.getText().toString());
+        if(tempPostleitzahl != null){
+            //TODO: Validieren der Eingabe - fuenfstellig
+            adresse.setPostleitzahl(tempPostleitzahl);
+        }
+
+        adresse.setOrt(editTextOrt.getText().toString());
 
         PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
         phileTipTipMain.getMeldung().setMeldungsAdresse(adresse);

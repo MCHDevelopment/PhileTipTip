@@ -4,6 +4,7 @@ public class Adresse {
     private String strasse;
     private int hausNummer;
     private int postleitzahl;
+    private String ort;
 
     public Adresse() {
         resetAdresse();
@@ -23,7 +24,7 @@ public class Adresse {
         else{
             tempStrasse = strasse;
         }
-        return strasse;
+        return tempStrasse;
     }
 
     public void setStrasse(String strasse) {
@@ -44,5 +45,41 @@ public class Adresse {
 
     public void setPostleitzahl(int postleitzahl) {
         this.postleitzahl = postleitzahl;
+    }
+
+    public String getOrt() {
+        String tempOrt = "";
+        if(ort.isEmpty()){
+            tempOrt = "keine Eingabe";
+        }
+        else{
+            tempOrt = ort;
+        }
+
+        return tempOrt;
+    }
+
+    public void setOrt(String ort) {
+        this.ort = ort;
+    }
+
+    public String getAdressString() {
+        String tempAdressString = "";
+        tempAdressString += getStrasse() + " ";
+        if(getHausNummer() > 0){
+            tempAdressString += getHausNummer() + "\n";
+        }else{
+            tempAdressString += "-" + "\n";
+        }
+
+        if(getPostleitzahl() > 0){
+            tempAdressString += getPostleitzahl() + "\n";
+        }else{
+            tempAdressString += "-" + "\n";
+        }
+
+        tempAdressString += getOrt() + "\n";
+
+        return tempAdressString;
     }
 }
