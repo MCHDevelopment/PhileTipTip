@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +53,12 @@ public class FotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 //TODO: Foto machen
+
+                // Toast
+                Toast.makeText(FotoActivity.this, // Android Context
+                                "onClick für Kamera-Button aufgerufen", // Toast-Nachricht
+                                Toast.LENGTH_LONG) // Anzeigedauer
+                        .show(); // Toast anzeigen
             }
         });
     }
@@ -62,6 +69,12 @@ public class FotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 //TODO: Gallerie oeffnen Bild auswaehlen
+
+                // Toast
+                Toast.makeText(FotoActivity.this, // Android Context
+                                "onClick für Gallerie-Button aufgerufen", // Toast-Nachricht
+                                Toast.LENGTH_LONG) // Anzeigedauer
+                        .show(); // Toast anzeigen
             }
         });
     }

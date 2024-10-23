@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,48 +29,54 @@ public class Adresseingabe extends AppCompatActivity {
         });
     }
 
-    private void configureButtons(){
+    private void configureButtons() {
         configureHomeButton();
         configureWeiterButton();
         configureGPSButton();
         configureZurueckButton();
     }
 
-    private void configureHomeButton(){
+    private void configureHomeButton() {
         ImageButton buttonHome = findViewById(R.id.button_home);
-        buttonHome.setOnClickListener(new View.OnClickListener(){
+        buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 startActivity(new Intent(Adresseingabe.this, PhileMenue.class));
             }
         });
     }
 
-    private void configureGPSButton(){
+    private void configureGPSButton() {
         ImageButton buttonGPS = findViewById(R.id.button_gps);
-        buttonGPS.setOnClickListener(new View.OnClickListener(){
+        buttonGPS.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 //TODO: GPS Daten einholen, Adresse fuellen
+
+                // Toast
+                Toast.makeText(Adresseingabe.this, // Android Context
+                                "onClick für GPS-Button aufgerufen", // Toast-Nachricht
+                                Toast.LENGTH_LONG) // Anzeigedauer
+                        .show(); // Toast anzeigen
             }
         });
     }
 
-    private void configureWeiterButton(){
+    private void configureWeiterButton() {
         ImageButton buttonWeiter = findViewById(R.id.button_continue);
-        buttonWeiter.setOnClickListener(new View.OnClickListener(){
+        buttonWeiter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 startActivity(new Intent(Adresseingabe.this, FotoActivity.class));
             }
         });
     }
 
-    private void configureZurueckButton(){
+    private void configureZurueckButton() {
         ImageButton buttonZurueck = findViewById(R.id.button_back);
-        buttonZurueck.setOnClickListener(new View.OnClickListener(){
+        buttonZurueck.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 startActivity(new Intent(Adresseingabe.this, NeueMeldung.class));
             }
         });
