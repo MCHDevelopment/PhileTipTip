@@ -1,5 +1,7 @@
 package com.mch.philetiptip.Logic;
 
+import android.util.Log;
+
 public class Meldung {
     private Adresse meldungsAdresse;
     private Meldungsart meldungsart;
@@ -14,6 +16,8 @@ public class Meldung {
         this.meldungsAdresse.resetAdresse();
         this.meldungsart = meldungsart.Sonstige;
         this.meldungstext = "";
+
+        Log.e("MeldungActivity", "Meldung Reset");
     }
 
     public Meldungsart getMeldungsart() {

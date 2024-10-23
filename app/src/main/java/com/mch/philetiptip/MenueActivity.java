@@ -44,7 +44,7 @@ public class MenueActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 starteMeldungsProzess();
-                startActivity(new Intent(MenueActivity.this, MeldungActivity.class));
+                startActivity(new Intent(MenueActivity.this, MeldungMainActivity.class));
             }
         });
     }

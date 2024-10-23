@@ -1,55 +1,40 @@
 package com.mch.philetiptip;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldungsart;
-import com.mch.philetiptip.Logic.MeldungsprozessActivity;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
-public class MeldungActivity extends MeldungsprozessActivity {
+public class MeldungDateneingabeFragment extends Fragment {
 
     private EditText editTextMeldung;
     private Spinner typeSpinner;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_neue_meldung);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate das Fragment-Layout
+        View view = inflater.inflate(R.layout.fragment_neue_meldung, container, false);
 
-        configureButtons();
-        configureSpinner();
-        configureTextFields();
+        configureSpinner(view);
+        configureTextFields(view);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Jetzt kannst du mit editTextHausnummer arbeiten
+        return view;
     }
 
-    private void configureSpinner() {
-        typeSpinner = findViewById(R.id.type_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+    private void configureSpinner(View view) {
+        typeSpinner = view.findViewById(R.id.type_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.options_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(adapter);
@@ -60,12 +45,12 @@ public class MeldungActivity extends MeldungsprozessActivity {
         typeSpinner.setSelection(tempMeldungsart.getIndex());
     }
 
-    private void configureTextFields() {
-        configureMeldungsInput();
+    private void configureTextFields(View view) {
+        configureMeldungsInput(view);
     }
 
-    private void configureMeldungsInput() {
-        editTextMeldung = findViewById(R.id.meldung_input);
+    private void configureMeldungsInput(View view) {
+        editTextMeldung = view.findViewById(R.id.meldung_input);
 
         //TODO: Vorbelegung besser
         PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
@@ -79,35 +64,16 @@ public class MeldungActivity extends MeldungsprozessActivity {
         }
     }
 
-    private void configureButtons(){
-        configureHomeButton();
-        configureWeiterButton();
-    }
-
-    private void configureHomeButton(){
-        configureHomeButton(R.id.button_home, MenueActivity.class);
-    }
-
-    private void configureWeiterButton(){
-        ImageButton buttonWeiter = findViewById(R.id.button_continue);
-        buttonWeiter.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                fuelleMeldung();
-                startActivity(new Intent(MeldungActivity.this, AdresseingabeActivity.class));
-            }
-        });
-    }
-
-    private void fuelleMeldung(){
+    public void fuelleMeldung(){
         PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
         phileTipTipMain.getMeldung().setMeldungstext(editTextMeldung.getText().toString());
         phileTipTipMain.getMeldung().setMeldungsart(getSelectedMeldungsart());
         // Toast
+        /*
         Toast.makeText(MeldungActivity.this, // Android Context
                         "Art der Meldung: " + phileTipTipMain.getMeldung().getMeldungsart().toString(), // Toast-Nachricht
                         Toast.LENGTH_LONG) // Anzeigedauer
-                .show(); // Toast anzeigen
+                .show(); // Toast anzeigen*/
     }
 
     private Meldungsart getSelectedMeldungsart() {
