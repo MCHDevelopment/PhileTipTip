@@ -31,6 +31,7 @@ public class PruefenActivity extends AppCompatActivity {
     private void configureButtons(){
         configureHomeButton();
         configureZurueckButton();
+        configureMeldungEditButton();
         configureImageEditButton();
         configureAdressEditButton();
         configureSubmitButton();
@@ -42,6 +43,16 @@ public class PruefenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(PruefenActivity.this, PhileMenue.class));
+            }
+        });
+    }
+
+    private void configureMeldungEditButton(){
+        ImageButton buttonZurueck = findViewById(R.id.button_back);
+        buttonZurueck.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(PruefenActivity.this, FotoActivity.class));
             }
         });
     }

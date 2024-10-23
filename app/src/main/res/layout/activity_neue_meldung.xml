@@ -28,7 +28,7 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
-        android:layout_height="278dp"
+        android:layout_height="148dp"
         android:layout_gravity="center"
         android:contentDescription="@string/logo_description"
         android:src="@drawable/philetiptipicon" />
@@ -37,7 +37,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="292dp"
+        android:layout_height="212dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_background"
         android:padding="16dp">
@@ -72,18 +72,31 @@
             android:layout_marginTop="16dp"
             android:minHeight="42dp"
             android:scrollbarSize="8dp" />
-
-        <ImageButton
-            android:id="@+id/button_continue"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_below="@id/type_spinner"
-            android:layout_alignEnd="@id/info_text"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:background="@drawable/button_background"
-            android:contentDescription="@string/weiter"
-            android:src="@drawable/vor" />
-
     </RelativeLayout>
+
+    <!-- Eingabebereich -->
+    <EditText
+        android:id="@+id/contact_input"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_background"
+        android:padding="16dp"
+        android:hint="@string/meldungtext"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:gravity="top" />
+
+    <ImageButton
+        android:id="@+id/button_continue"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/button_background"
+        android:contentDescription="Weiter"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/vor" />
 </LinearLayout>
