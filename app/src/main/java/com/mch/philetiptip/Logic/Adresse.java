@@ -12,6 +12,7 @@ public class Adresse {
 
     public void resetAdresse(){
         this.strasse = "";
+        this.ort = "";
         this.hausNummer = 0;
         this.postleitzahl = 0;
     }

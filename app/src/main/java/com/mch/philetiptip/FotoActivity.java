@@ -22,13 +22,18 @@ public class FotoActivity extends MeldungsprozessActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_foto);
 
-        configureButtons();
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.foto_main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        configureButtons();
     }
 
     private void configureButtons(){

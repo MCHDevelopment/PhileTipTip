@@ -8,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -31,14 +30,19 @@ public class AdresseingabeActivity extends MeldungsprozessActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_adresseingabe);
 
-        configureButtons();
-        configureTextFields();
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.adresseingabe_main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        configureButtons();
+        configureTextFields();
     }
 
     private void configureTextFields() {
@@ -50,18 +54,62 @@ public class AdresseingabeActivity extends MeldungsprozessActivity {
 
     private void configureOrt() {
         editTextOrt = findViewById(R.id.city_input);
+
+        //TODO: Vorbelegung besser
+        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        String tempOrtText = phileTipTipMain.getMeldung().getMeldungAdresse().getOrt();
+        if(tempOrtText.isEmpty())
+        {
+            editTextOrt.setText("");
+            editTextOrt.setHint("Ort");
+        }else{
+            editTextOrt.setText(tempOrtText);
+        }
     }
 
     private void configurePostleitzahl() {
         editTextPostleitzahl = findViewById(R.id.postal_code_input);
+
+        //TODO: Vorbelegung besser
+        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        int tempPostleitzahl = phileTipTipMain.getMeldung().getMeldungAdresse().getPostleitzahl();
+        if(tempPostleitzahl <= 0)
+        {
+            editTextPostleitzahl.setText("");
+            editTextPostleitzahl.setHint("Postleitzahl");
+        }else{
+            editTextOrt.setText(tempPostleitzahl);
+        }
     }
 
     private void configureHausnummer() {
         editTextHausnummer = findViewById(R.id.house_number_input);
+
+        //TODO: Vorbelegung besser
+        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        int tempHausnummer = phileTipTipMain.getMeldung().getMeldungAdresse().getHausNummer();
+        if(tempHausnummer <= 0)
+        {
+            editTextHausnummer.setText("");
+            editTextHausnummer.setHint("Hausnummer");
+        }else{
+            editTextHausnummer.setText(tempHausnummer);
+        }
     }
 
     private void configureStrasse() {
         editTextStrasse = findViewById(R.id.street_input);
+
+        //TODO: Vorbelegung besser
+        PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
+        String tempStrasseText = phileTipTipMain.getMeldung().getMeldungAdresse().getStrasse();
+        if(tempStrasseText.isEmpty())
+        {
+            editTextStrasse.setText("");
+            editTextStrasse.setHint("Strasse");
+        }else{
+            editTextStrasse.setText(tempStrasseText);
+        }
     }
 
     private void configureButtons() {

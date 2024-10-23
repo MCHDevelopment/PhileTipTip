@@ -27,15 +27,20 @@ public class PruefenActivity extends MeldungsprozessActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pruefen);
 
-        configureButtons();
-        configureTextviews();
-        fuelleInhalte();
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.pruefen_main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        configureButtons();
+        configureTextviews();
+        fuelleInhalte();
     }
 
     private void configureTextviews() {
@@ -59,7 +64,7 @@ public class PruefenActivity extends MeldungsprozessActivity {
         configureAdressEditButton();
         configureSubmitButton();
     }
-    
+
     private void configureHomeButton(){
         configureHomeButton(R.id.button_home, MenueActivity.class);
     }

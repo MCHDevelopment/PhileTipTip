@@ -11,7 +11,7 @@ public class Meldung {
     }
 
     private void resetMeldung(){
-        this.meldungsAdresse = null;
+        this.meldungsAdresse.resetAdresse();
         this.meldungsart = meldungsart.Sonstige;
         this.meldungstext = "";
     }

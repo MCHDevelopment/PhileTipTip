@@ -43,7 +43,6 @@ public class MeldungActivity extends MeldungsprozessActivity {
         });
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
