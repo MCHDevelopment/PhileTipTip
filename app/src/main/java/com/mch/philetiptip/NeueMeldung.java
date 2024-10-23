@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -86,6 +87,11 @@ public class NeueMeldung extends AppCompatActivity {
         PhileTipTipMain phileTipTipMain = (PhileTipTipMain) getApplicationContext();
         phileTipTipMain.getMeldung().setMeldungstext(editTextMeldung.getText().toString());
         phileTipTipMain.getMeldung().setMeldungsart(getSelectedMeldungsart());
+        // Toast
+        Toast.makeText(NeueMeldung.this, // Android Context
+                        "Art der Meldung: " + phileTipTipMain.getMeldung().getMeldungsart().toString(), // Toast-Nachricht
+                        Toast.LENGTH_LONG) // Anzeigedauer
+                .show(); // Toast anzeigen
     }
 
     private Meldungsart getSelectedMeldungsart() {
@@ -98,7 +104,7 @@ public class NeueMeldung extends AppCompatActivity {
                 return Meldungsart.Sonstige;
             case 1:
                 return Meldungsart.Schaedlingsbefall;
-            case 2: 
+            case 2:
                 return Meldungsart.Unkrautbewuchs;
             default:
                 throw new IllegalArgumentException("Unbekannte Meldungsart an Position: " + selectedPosition);
