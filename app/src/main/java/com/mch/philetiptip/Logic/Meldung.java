@@ -2,12 +2,19 @@ package com.mch.philetiptip.Logic;
 
 import android.util.Log;
 
+import com.mch.philetiptip.Logic.Data.Adresse;
+
+import java.util.Date;
+
 public class Meldung {
     private Adresse meldungsAdresse;
     private Meldungsart meldungsart;
     private String meldungstext;
 
     private int meldungsId;
+
+    private int melderId;
+    private Date meldungsDatum;
 
     public Meldung() {
         meldungsAdresse = new Adresse();
@@ -18,8 +25,6 @@ public class Meldung {
         this.meldungsAdresse.resetAdresse();
         this.meldungsart = meldungsart.Sonstige;
         this.meldungstext = "";
-
-        Log.e("MeldungActivity", "Meldung Reset");
     }
 
     public Meldungsart getMeldungsart() {

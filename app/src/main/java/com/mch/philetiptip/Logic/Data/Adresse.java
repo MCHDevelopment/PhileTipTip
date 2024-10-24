@@ -1,4 +1,4 @@
-package com.mch.philetiptip.Logic;
+package com.mch.philetiptip.Logic.Data;
 
 public class Adresse {
     private String strasse;
