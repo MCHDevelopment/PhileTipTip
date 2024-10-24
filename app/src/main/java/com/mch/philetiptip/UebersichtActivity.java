@@ -6,12 +6,12 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-public class UebersichtActivity extends AppCompatActivity {
+import com.mch.philetiptip.Logic.MeldungsprozessActivity;
+
+public class UebersichtActivity extends MeldungsprozessActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,26 +19,32 @@ public class UebersichtActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_uebersicht);
 
-        configureButtons();
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-    }
-
-    private void configureButtons() {
         configureHomeButton();
+        configureZurueckButton();
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new MeldungsUebersichtFragment())
+                    .commit();
+        }
     }
 
     private void configureHomeButton() {
         ImageButton buttonHome = findViewById(R.id.button_home);
-        buttonHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(UebersichtActivity.this, MenueActivity.class));
-            }
-        });
+        buttonHome.setOnClickListener(v -> startActivity(new Intent(UebersichtActivity.this, MenueActivity.class)));
+    }
+
+    private void configureZurueckButton() {
+        ImageButton buttonZurueck = findViewById(R.id.button_back);
+        buttonZurueck.setOnClickListener(v -> onBackPressed());
+    }
+
+    // Methode zum Wechseln zum DetailFragment
+    public void zeigeDetailFragment(String meldungId) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment detailFragment = MeldungDetailFragment.newInstance(meldungId);
+        transaction.replace(R.id.fragment_container, detailFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

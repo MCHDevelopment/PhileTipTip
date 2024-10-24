@@ -10,6 +10,8 @@ public class MeldungsHolder {
     }
 
     public void addMeldung(Meldung meldung){
+        //Nur für Testzwecke - TODO: Bessere UID Funktionalitaet
+        meldung.setMeldungsId(meldungen.size() + 1);
         meldungen.add(meldung);
     }
 }

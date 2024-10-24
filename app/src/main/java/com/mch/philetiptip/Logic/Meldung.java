@@ -7,6 +7,8 @@ public class Meldung {
     private Meldungsart meldungsart;
     private String meldungstext;
 
+    private int meldungsId;
+
     public Meldung() {
         meldungsAdresse = new Adresse();
         resetMeldung();
@@ -42,5 +44,13 @@ public class Meldung {
 
     public void setMeldungsAdresse(Adresse meldungsAdresse) {
         this.meldungsAdresse = meldungsAdresse;
+    }
+
+    public int getId() {
+        return meldungsId;
+    }
+
+    public void setMeldungsId(int meldungsId) {
+        this.meldungsId = meldungsId;
     }
 }

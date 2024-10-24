@@ -9,7 +9,6 @@
     tools:context=".MeldungMainActivity">
 
     <!-- Home Button -->
-
     <ImageButton
         android:id="@+id/button_home"
         android:layout_width="60dp"
