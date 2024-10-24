@@ -9,25 +9,22 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import com.mch.philetiptip.Logic.Meldung;
+
 public class MeldungDetailFragment extends Fragment {
 
-    private static final String ARG_MELDUNG_ID = "meldung_id";
-    private String meldungId;
+    //private static final String ARG_MELDUNG_ID = "meldung_id";
+    private Meldung meldung;
 
-    public static MeldungDetailFragment newInstance(String meldungId) {
+    public static MeldungDetailFragment newInstance(Meldung meldung) {
         MeldungDetailFragment fragment = new MeldungDetailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_MELDUNG_ID, meldungId);
-        fragment.setArguments(args);
+        fragment.setMeldung(meldung);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            meldungId = getArguments().getString(ARG_MELDUNG_ID);
-        }
     }
 
     @Override
@@ -39,16 +36,19 @@ public class MeldungDetailFragment extends Fragment {
         TextView textAdresse = view.findViewById(R.id.text_address);
         ImageView imageFoto = view.findViewById(R.id.image_photo);
 
-        // Abgerundete PhileBeige-Hintergründe setzen
         textMeldung.setBackgroundResource(R.drawable.rounded_background);
         textAdresse.setBackgroundResource(R.drawable.rounded_background);
         imageFoto.setBackgroundResource(R.drawable.rounded_background);
 
-        // Hier die Daten der Meldung abrufen und anzeigen (z.B. aus einer Datenbank)
-        // textMeldung.setText(...);
-        // textAdresse.setText(...);
+        textMeldung.setText(meldung.getMeldungstext());
+        textAdresse.setText(meldung.getMeldungAdresse().getAdressString());
+        //TODO: Bild anzeigen
         // imageFoto.setImageBitmap(...);
 
         return view;
+    }
+
+    public void setMeldung(Meldung meldung) {
+        this.meldung = meldung;
     }
 }

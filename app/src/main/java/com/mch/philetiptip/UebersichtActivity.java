@@ -9,6 +9,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.mch.philetiptip.Logic.Meldung;
 import com.mch.philetiptip.Logic.MeldungsprozessActivity;
 
 public class UebersichtActivity extends MeldungsprozessActivity {
@@ -40,9 +41,9 @@ public class UebersichtActivity extends MeldungsprozessActivity {
     }
 
     // Methode zum Wechseln zum DetailFragment
-    public void zeigeDetailFragment(String meldungId) {
+    public void zeigeDetailFragment(Meldung meldung) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Fragment detailFragment = MeldungDetailFragment.newInstance(meldungId);
+        Fragment detailFragment = MeldungDetailFragment.newInstance(meldung);
         transaction.replace(R.id.fragment_container, detailFragment);
         transaction.addToBackStack(null);
         transaction.commit();

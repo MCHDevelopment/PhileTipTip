@@ -33,23 +33,9 @@ public class MeldungsUebersichtFragment extends Fragment {
         MeldungenAdapter adapter = new MeldungenAdapter(getContext(), meldungenListe);
         meldungenListView.setAdapter(adapter);
 
-        Button hochButton = view.findViewById(R.id.button_up);
-        Button runterButton = view.findViewById(R.id.button_down);
-
-        // Hoch-Button scrollt nach oben
-        hochButton.setOnClickListener(v -> {
-            // Code zum Scrollen nach oben
-        });
-
-        // Runter-Button scrollt nach unten
-        runterButton.setOnClickListener(v -> {
-            // Code zum Scrollen nach unten
-        });
-
         // Bei Klick auf eine Meldung zum DetailFragment wechseln
         meldungenListView.setOnItemClickListener((parent, view1, position, id) -> {
-            String meldungId = "" + meldungenListe.get(position).getId();
-            ((UebersichtActivity) getActivity()).zeigeDetailFragment(meldungId);
+            ((UebersichtActivity) getActivity()).zeigeDetailFragment(meldungenListe.get(position));
         });
 
         return view;
