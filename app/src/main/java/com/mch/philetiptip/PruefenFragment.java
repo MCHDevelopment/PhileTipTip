@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldung;
@@ -36,7 +32,6 @@ public class PruefenFragment extends Fragment {
         return view;
     }
 
-
     private void configureTextviews(View view) {
         configureMeldungTextview(view);
         configureAdressTextview(view);
@@ -54,7 +49,6 @@ public class PruefenFragment extends Fragment {
         configureMeldungEditButton(view);
         configureImageEditButton(view);
         configureAdressEditButton(view);
-        configureSubmitButton(view);
     }
 
     private void configureMeldungEditButton(View view){
@@ -72,27 +66,7 @@ public class PruefenFragment extends Fragment {
         //TODO: Neue Methode zum Schirmwechsel
     }
 
-    private void configureSubmitButton(View view){
-        ImageButton buttonSubmit = view.findViewById(R.id.button_submit);
-        buttonSubmit.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                projektEintragen();
-                //TODO: Meldung in Datenbank anlegen
-                //TODO: Neue Methode zum Schirmwechsel
-            }
-        });
-    }
-
-    private void projektEintragen(){
-        //TODO: Meldung in Datenbank anlegen
-
-        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        phileTipTipMain.getMeldungsHolder().addMeldung(phileTipTipMain.getMeldung());
-    }
-
     private void fuelleInhalte(){
-
 
         PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
 

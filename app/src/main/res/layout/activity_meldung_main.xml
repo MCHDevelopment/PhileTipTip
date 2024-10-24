@@ -15,16 +15,15 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="start"
-        android:layout_marginStart="335dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="335dp"
         android:background="@drawable/button_background"
         android:contentDescription="Home"
         android:padding="10dp"
         android:scaleType="centerInside"
         android:src="@drawable/home"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,16 +39,14 @@
         app:layout_constraintTop_toBottomOf="@+id/button_home"
         tools:context=".MeldungMainActivity" />
 
-    <!-- Zurück Button -->
 
-    <!-- Weiter Button -->
     <ImageButton
         android:id="@+id/button_back"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="start"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="17dp"
         android:background="@drawable/button_background"
         android:contentDescription="Zurück"
         android:padding="10dp"
@@ -57,6 +54,23 @@
         android:src="@drawable/zurueck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/button_submit"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/button_background"
+        android:contentDescription="@string/best_tigen"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_continue"
+        app:layout_constraintStart_toEndOf="@+id/button_back" />
 
     <ImageButton
         android:id="@+id/button_continue"

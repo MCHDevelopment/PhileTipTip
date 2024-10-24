@@ -125,24 +125,5 @@
             android:padding="10dp"
             android:scaleType="centerInside"
             android:src="@drawable/imageedit" />
-
-        <ImageButton
-            android:id="@+id/button_submit"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom|center"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/button_background"
-            android:contentDescription="@string/best_tigen"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/submit" />
-        <!-- Zentrierter Icon Button
-
-        
     </LinearLayout>
-
-
-    <!-- Icon Buttons für Zurück und Weiter -->
-
 </LinearLayout>
