@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldung;
+import com.mch.philetiptip.Logic.Meldungsschirm;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 public class PruefenFragment extends Fragment {
@@ -52,18 +53,36 @@ public class PruefenFragment extends Fragment {
     }
 
     private void configureMeldungEditButton(View view){
-        ImageButton buttonZurueck = view.findViewById(R.id.button_back);
-        //TODO: Neue Methode zum Schirmwechsel
+        ImageButton buttonMeldungEdit = view.findViewById(R.id.button_edit_message);
+
+        buttonMeldungEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MeldungMainActivity) getActivity()).zeigeFragment(Meldungsschirm.ArtUndText);
+            }
+        });
     }
 
     private void configureAdressEditButton(View view){
         ImageButton buttonAdressEdit = view.findViewById(R.id.button_edit_address);
-        //TODO: Neue Methode zum Schirmwechsel
+
+        buttonAdressEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MeldungMainActivity) getActivity()).zeigeFragment(Meldungsschirm.Adresse);
+            }
+        });
     }
 
     private void configureImageEditButton(View view){
         ImageButton buttonImageEdit = view.findViewById(R.id.button_edit_image);
-        //TODO: Neue Methode zum Schirmwechsel
+
+        buttonImageEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MeldungMainActivity) getActivity()).zeigeFragment(Meldungsschirm.Foto);
+            }
+        });
     }
 
     private void fuelleInhalte(){

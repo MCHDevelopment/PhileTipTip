@@ -124,28 +124,24 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
     }
 
     private void wechselZumNaechstenSchirm(){
-        Fragment tempFragment = null;
+        Meldungsschirm zielSchirm = currentSchirm;
         switch (currentSchirm){
             case ArtUndText:
                 dateneingabeFragment.fuelleMeldung();
-                tempFragment = adresseingabeFragment;
-                currentSchirm = Meldungsschirm.Adresse;
+                zielSchirm = Meldungsschirm.Adresse;
                 break;
             case Adresse:
                 adresseingabeFragment.fuelleAdresse();
-                tempFragment = fotoFragment;
-                currentSchirm = Meldungsschirm.Foto;
+                zielSchirm = Meldungsschirm.Foto;
                 break;
             case Foto:
-                tempFragment = pruefenFragment;
-                configureWeiterButton();
-                currentSchirm = Meldungsschirm.Pruefen;
+                zielSchirm = Meldungsschirm.Pruefen;
                 break;
             case Pruefen:
                 break;
         }
 
-        schirmWechsel(tempFragment);
+        zeigeFragment(zielSchirm);
     }
 
     private void configureZurueckButton() {
@@ -159,24 +155,43 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
     }
 
     private void wechselZumVorherigemSchirm(){
-        Fragment tempFragment = null;
+        Meldungsschirm zielSchirm = currentSchirm;
         switch (currentSchirm){
             case ArtUndText:
                 break;
             case Adresse:
-                tempFragment = dateneingabeFragment;
-                currentSchirm = Meldungsschirm.ArtUndText;
+                zielSchirm = Meldungsschirm.ArtUndText;
                 break;
             case Foto:
-                tempFragment = adresseingabeFragment;
-                currentSchirm = Meldungsschirm.Adresse;
+                zielSchirm = Meldungsschirm.Adresse;
                 break;
             case Pruefen:
-                tempFragment = fotoFragment;
-                currentSchirm = Meldungsschirm.Foto;
+                zielSchirm = Meldungsschirm.Foto;
                 break;
         }
 
+        zeigeFragment(zielSchirm);
+    }
+
+    //public damit auch das PruefenFragment darauf zugreifen kann um einen Rueckweg zu erlauben
+    public void zeigeFragment(Meldungsschirm zielSchirm){
+        Fragment tempFragment = null;
+        switch (zielSchirm){
+            case ArtUndText:
+                tempFragment = dateneingabeFragment;
+                break;
+            case Adresse:
+                tempFragment = adresseingabeFragment;
+                break;
+            case Foto:
+                tempFragment = fotoFragment;
+                break;
+            case Pruefen:
+                tempFragment = pruefenFragment;
+                break;
+        }
+
+        currentSchirm = zielSchirm;
         schirmWechsel(tempFragment);
     }
 
@@ -230,7 +245,7 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
 
         progressDialog.show();
 
-        // Simuliere den Fortschritt über 3 Sekunden
+        // Simuliere den Fortschritt über 2 Sekunden
         new Thread(new Runnable() {
             public void run() {
                 while (progressStatus[0] < 100) {
@@ -241,7 +256,7 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
                         }
                     });
                     try {
-                        Thread.sleep(30);  // Simuliert eine 3-Sekunden-Ladezeit
+                        Thread.sleep(20);  // Simuliert eine 2-Sekunden-Ladezeit
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
