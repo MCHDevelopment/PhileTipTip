@@ -1,6 +1,7 @@
 package com.mch.philetiptip;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldung;
+import com.mch.philetiptip.Logic.PhileTipTipMain;
+import com.mch.philetiptip.Optic.MeldungenAdapter;
 
 import java.util.List;
 
@@ -23,7 +26,12 @@ public class MeldungsUebersichtFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meldungs_uebersicht, container, false);
         meldungenListView = view.findViewById(R.id.meldungen_list);
-        // Hier müsstest du eine eigene Adapter-Klasse erstellen, um die Liste zu füllen
+
+        meldungenListe = PhileTipTipMain.getInstance().getMeldungsHolder().getMeldungen();
+
+        Log.e("MeldungsUebersichtFragment", "Anzahl der Meldungen: " + meldungenListe.size());
+        MeldungenAdapter adapter = new MeldungenAdapter(getContext(), meldungenListe);
+        meldungenListView.setAdapter(adapter);
 
         Button hochButton = view.findViewById(R.id.button_up);
         Button runterButton = view.findViewById(R.id.button_down);
