@@ -118,24 +118,28 @@
             android:id="@+id/button_edit_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_gravity="top|center"
             android:layout_marginStart="20dp"
             android:background="@drawable/button_background"
+            android:contentDescription="@string/bild_bearbeiten"
             android:padding="10dp"
             android:scaleType="centerInside"
-            android:src="@drawable/imageedit"
-            android:contentDescription="@string/bild_bearbeiten" />
-        <!-- Zentrierter Icon Button -->
+            android:src="@drawable/imageedit" />
+
         <ImageButton
             android:id="@+id/button_submit"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginTop="30dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginStart="20dp"
             android:background="@drawable/button_background"
             android:contentDescription="@string/best_tigen"
             android:padding="10dp"
             android:scaleType="centerInside"
             android:src="@drawable/submit" />
+        <!-- Zentrierter Icon Button
+
+        
     </LinearLayout>
 
 

@@ -1,23 +1,24 @@
 package com.mch.philetiptip;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.fragment.app.Fragment;
 
-import com.mch.philetiptip.Logic.Meldung;
 import com.mch.philetiptip.Logic.MeldungsprozessActivity;
 import com.mch.philetiptip.Logic.Meldungsschirm;
-import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 public class MeldungMainActivity extends MeldungsprozessActivity {
+
     private MeldungDateneingabeFragment dateneingabeFragment;
     private AdresseingabeFragment adresseingabeFragment;
     private FotoFragment fotoFragment;
     private PruefenFragment pruefenFragment;
+
+    private ImageButton buttonZurueck;
+    private ImageButton buttonWeiter;
 
     private Meldungsschirm currentSchirm = Meldungsschirm.ArtUndText;
 
@@ -28,6 +29,11 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
         setContentView(R.layout.activity_meldung_main);
 
         configureButtons();
+
+        //Fuer das erste Fragment findet kein Aufruf der Schirmwechsel Funktion statt, deswegen muss
+        //setzeButtonSichtbarkeit hier losgetreten werden
+        currentSchirm = Meldungsschirm.ArtUndText;
+        setzeButtonSichtbarkeit();
 
         // Fragmente einmalig erstellen
         dateneingabeFragment = new MeldungDateneingabeFragment();
@@ -42,24 +48,63 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
                     .commit();
         }
     }
-
     private void configureButtons() {
         configureHomeButton();
         configureWeiterButton();
         configureZurueckButton();
     }
 
+    private void setzeButtonSichtbarkeit() {
+        switch (currentSchirm){
+            case ArtUndText:
+                zurueckButtonAusblenden();
+                weiterButtonEinblenden();
+                break;
+
+            case Adresse:
+            case Foto:
+                zurueckButtonEinblenden();
+                weiterButtonEinblenden();
+                break;
+
+            case Pruefen:
+                zurueckButtonEinblenden();
+                weiterButtonAusblenden();
+                break;
+        }
+    }
+
+    private void zurueckButtonAusblenden()
+    {
+        buttonZurueck.setVisibility(View.GONE);
+    }
+
+    private void zurueckButtonEinblenden()
+    {
+        buttonZurueck.setVisibility(View.VISIBLE);
+    }
+
+    private void weiterButtonAusblenden()
+    {
+        buttonWeiter.setVisibility(View.GONE);
+    }
+
+    private void weiterButtonEinblenden()
+    {
+        buttonWeiter.setVisibility(View.VISIBLE);
+    }
+
     private void configureWeiterButton() {
-        ImageButton buttonWeiter = findViewById(R.id.button_continue);
+        buttonWeiter = findViewById(R.id.button_continue);
         buttonWeiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextSchirm();
+                wechselZumNaechstenSchirm();
             }
         });
     }
 
-    private void nextSchirm(){
+    private void wechselZumNaechstenSchirm(){
         Fragment tempFragment = null;
         switch (currentSchirm){
             case ArtUndText:
@@ -74,6 +119,7 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
                 break;
             case Foto:
                 tempFragment = pruefenFragment;
+                configureWeiterButton();
                 currentSchirm = Meldungsschirm.Pruefen;
                 break;
             case Pruefen:
@@ -84,16 +130,16 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
     }
 
     private void configureZurueckButton() {
-        ImageButton buttonWeiter = findViewById(R.id.button_back);
-        buttonWeiter.setOnClickListener(new View.OnClickListener() {
+        buttonZurueck = findViewById(R.id.button_back);
+        buttonZurueck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                previousSchirm();
+                wechselZumVorherigemSchirm();
             }
         });
     }
 
-    private void previousSchirm(){
+    private void wechselZumVorherigemSchirm(){
         Fragment tempFragment = null;
         switch (currentSchirm){
             case ArtUndText:
@@ -121,6 +167,8 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit();
+
+        setzeButtonSichtbarkeit();
     }
 
     private void configureHomeButton() {

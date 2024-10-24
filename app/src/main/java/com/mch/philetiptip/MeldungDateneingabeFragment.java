@@ -22,13 +22,11 @@ public class MeldungDateneingabeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate das Fragment-Layout
         View view = inflater.inflate(R.layout.fragment_neue_meldung, container, false);
 
         configureSpinner(view);
         configureTextFields(view);
 
-        // Jetzt kannst du mit editTextHausnummer arbeiten
         return view;
     }
 
@@ -38,11 +36,6 @@ public class MeldungDateneingabeFragment extends Fragment {
                 R.array.options_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(adapter);
-
-        //TODO: Vorbelegung besser
-        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        Meldungsart tempMeldungsart = phileTipTipMain.getMeldung().getMeldungsart();
-        typeSpinner.setSelection(tempMeldungsart.getIndex());
     }
 
     private void configureTextFields(View view) {
@@ -51,17 +44,6 @@ public class MeldungDateneingabeFragment extends Fragment {
 
     private void configureMeldungsInput(View view) {
         editTextMeldung = view.findViewById(R.id.meldung_input);
-
-        //TODO: Vorbelegung besser
-        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        String tempMeldungsText = phileTipTipMain.getMeldung().getMeldungstext();
-        if(tempMeldungsText.isEmpty())
-        {
-            editTextMeldung.setText("");
-            editTextMeldung.setHint("Bitte Ihre Meldung eingeben...");
-        }else{
-            editTextMeldung.setText(tempMeldungsText);
-        }
     }
 
     public void fuelleMeldung(){
