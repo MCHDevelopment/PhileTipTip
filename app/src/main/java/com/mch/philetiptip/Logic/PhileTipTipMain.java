@@ -10,7 +10,6 @@ import com.mch.philetiptip.Logic.Data.TeamLeiter;
 public class PhileTipTipMain {
     private static PhileTipTipMain instance;
 
-    private Meldung meldung;
     private MeldungsHolder meldungsHolder;
 
     private Person nutzer;
@@ -27,24 +26,12 @@ public class PhileTipTipMain {
         return instance;
     }
 
-    public static void initUserData(int idNumber) {
+    public void initUserData(int idNumber) {
 
         //TODO: Aus Datenbank auslesen
         instance.nutzer = new Mieter("Max", "Mietermann", 123);
         //instance.nutzer = new Angestellter("Arnold", "Angestellter", 456);
         //instance.nutzer = new TeamLeiter("Thea", "Teamleiterin", 789);
-    }
-
-    public void CreateMeldung(){
-        this.meldung = new Meldung();
-    }
-
-    public Meldung getMeldung() {
-        if (meldung == null) {
-            Log.e("MeldungActivity", "Meldung ist null");
-        }
-
-        return meldung;
     }
 
     public MeldungsHolder getMeldungsHolder() {

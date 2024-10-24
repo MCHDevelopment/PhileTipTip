@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Data.Adresse;
 import com.mch.philetiptip.Logic.Helper;
+import com.mch.philetiptip.Logic.Meldung;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 public class AdresseingabeFragment extends Fragment {
@@ -20,11 +21,18 @@ public class AdresseingabeFragment extends Fragment {
     private EditText editTextHausnummer;
     private EditText editTextStrasse;
 
+    private Meldung meldung;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate das Fragment-Layout
         View view = inflater.inflate(R.layout.fragment_adresseingabe, container, false);
+
+        // Meldung aus dem Bundle holen
+        if (getArguments() != null) {
+            meldung = (Meldung) getArguments().getSerializable("meldung");
+        }
 
         configureButtons(view);
         configureTextFields(view);
@@ -95,7 +103,6 @@ public class AdresseingabeFragment extends Fragment {
 
         adresse.setOrt(editTextOrt.getText().toString());
 
-        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        phileTipTipMain.getMeldung().setMeldungsAdresse(adresse);
+        meldung.setMeldungsAdresse(adresse);
     }
 }

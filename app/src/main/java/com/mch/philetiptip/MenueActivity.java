@@ -43,16 +43,9 @@ public class MenueActivity extends AppCompatActivity {
         buttonMeldung.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                starteMeldungsProzess();
                 startActivity(new Intent(MenueActivity.this, MeldungMainActivity.class));
             }
         });
-    }
-
-    private void starteMeldungsProzess(){
-        //Wird hier erstellt - zur NeueMeldungActivity koennte zurueckgekehrt werden
-        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        phileTipTipMain.CreateMeldung();
     }
 
     private void configureUebersichtButton(){

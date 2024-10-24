@@ -31,8 +31,9 @@ public abstract class Person {
 
     public abstract int getID();
 
-    public void meldungMachen(Meldung meldung) {
-
+    public Meldung meldungMachen() {
+        Meldung tempMeldung = new Meldung(getID());
+        return tempMeldung;
     }
 
 }

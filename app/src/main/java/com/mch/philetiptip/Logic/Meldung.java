@@ -4,9 +4,13 @@ import android.util.Log;
 
 import com.mch.philetiptip.Logic.Data.Adresse;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Meldung {
+public class Meldung implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private Adresse meldungsAdresse;
     private Meldungsart meldungsart;
     private String meldungstext;
@@ -16,8 +20,9 @@ public class Meldung {
     private int melderId;
     private Date meldungsDatum;
 
-    public Meldung() {
+    public Meldung(int melderId) {
         meldungsAdresse = new Adresse();
+        this.melderId = melderId;
         resetMeldung();
     }
 

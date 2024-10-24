@@ -1,6 +1,5 @@
 package com.mch.philetiptip;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,8 +11,10 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.mch.philetiptip.Logic.Meldung;
 import com.mch.philetiptip.Logic.MeldungsprozessActivity;
 import com.mch.philetiptip.Logic.Meldungsschirm;
+import com.mch.philetiptip.Logic.Persistance.JSonMeldungsSpeicherer;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 public class MeldungMainActivity extends MeldungsprozessActivity {
@@ -29,11 +30,15 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
 
     private Meldungsschirm currentSchirm = Meldungsschirm.ArtUndText;
 
+    private Meldung meldung;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_meldung_main);
+
+        meldung = PhileTipTipMain.getInstance().getNutzer().meldungMachen();
 
         configureButtons();
 
@@ -42,11 +47,21 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
         currentSchirm = Meldungsschirm.ArtUndText;
         setzeButtonSichtbarkeit();
 
-        // Fragmente einmalig erstellen
+        // Fragmente einmalig erstellen und eine Referenz auf die Meldung uebergeben
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("meldung", meldung);
+
         dateneingabeFragment = new MeldungDateneingabeFragment();
+        dateneingabeFragment.setArguments(bundle);
+
         adresseingabeFragment = new AdresseingabeFragment();
+        adresseingabeFragment.setArguments(bundle);
+
         fotoFragment = new FotoFragment();
+        fotoFragment.setArguments(bundle);
+
         pruefenFragment = new PruefenFragment();
+        pruefenFragment.setArguments(bundle);
 
         // Initiales Fragment laden
         if (savedInstanceState == null) {
@@ -225,7 +240,11 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
         //TODO: Meldung in Datenbank anlegen
 
         PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        phileTipTipMain.getMeldungsHolder().addMeldung(phileTipTipMain.getMeldung());
+        phileTipTipMain.getMeldungsHolder().addMeldung(meldung);
+
+        //TODO: Bessere Auswahl ob off- oder Online
+        JSonMeldungsSpeicherer jSonMeldungsSpeicherermeldungsSpeicherer = new JSonMeldungsSpeicherer();
+        jSonMeldungsSpeicherermeldungsSpeicherer.speichereMeldung(meldung, getApplicationContext());
 
         ProgressBar progressBar;
         final int[] progressStatus = {0};

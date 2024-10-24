@@ -20,11 +20,18 @@ public class PruefenFragment extends Fragment {
     private TextView textMeldung;
     private TextView textAdresse;
 
+    private Meldung meldung;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate das Fragment-Layout
         View view = inflater.inflate(R.layout.fragment_pruefen, container, false);
+
+        // Meldung aus dem Bundle holen
+        if (getArguments() != null) {
+            meldung = (Meldung) getArguments().getSerializable("meldung");
+        }
 
         configureButtons(view);
         configureTextviews(view);
@@ -88,23 +95,15 @@ public class PruefenFragment extends Fragment {
     private void fuelleInhalte(){
 
         PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-
-        Meldung tempMeldung = phileTipTipMain.getMeldung();
-        Log.d("PruefenFragment", "Meldungstext: " + tempMeldung.getMeldungstext());
-        Log.d("PruefenFragment", "Adresse: " + tempMeldung.getMeldungAdresse().getAdressString());
-
         fuelleMeldungsfeld();
         fuelleAdressfeld(phileTipTipMain);
     }
 
     private void fuelleAdressfeld(PhileTipTipMain phileTipTipMain) {
-        Meldung tempMeldung = phileTipTipMain.getMeldung();
-        textAdresse.setText(tempMeldung.getMeldungAdresse().getAdressString());
+        textAdresse.setText(meldung.getMeldungAdresse().getAdressString());
     }
 
     private void fuelleMeldungsfeld() {
-        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        Meldung tempMeldung = phileTipTipMain.getMeldung();
-        textMeldung.setText(tempMeldung.getMeldungstext());
+        textMeldung.setText(meldung.getMeldungstext());
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
+import com.mch.philetiptip.Logic.Meldung;
 import com.mch.philetiptip.Logic.Meldungsart;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
@@ -19,10 +20,17 @@ public class MeldungDateneingabeFragment extends Fragment {
     private EditText editTextMeldung;
     private Spinner typeSpinner;
 
+    private Meldung meldung;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_neue_meldung, container, false);
+
+        // Meldung aus dem Bundle holen
+        if (getArguments() != null) {
+            meldung = (Meldung) getArguments().getSerializable("meldung");
+        }
 
         configureSpinner(view);
         configureTextFields(view);
@@ -48,8 +56,8 @@ public class MeldungDateneingabeFragment extends Fragment {
 
     public void fuelleMeldung(){
         PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        phileTipTipMain.getMeldung().setMeldungstext(editTextMeldung.getText().toString());
-        phileTipTipMain.getMeldung().setMeldungsart(getSelectedMeldungsart());
+        meldung.setMeldungstext(editTextMeldung.getText().toString());
+        meldung.setMeldungsart(getSelectedMeldungsart());
         // Toast
         /*
         Toast.makeText(MeldungActivity.this, // Android Context

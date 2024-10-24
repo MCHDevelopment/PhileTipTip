@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        PhileTipTipMain.initUserData(123);
+        PhileTipTipMain.getInstance().initUserData(123);
 
         prozentTextView = findViewById(R.id.prozentTextView);
         ladeSchrittTextView = findViewById(R.id.ladeSchrittTextView);
