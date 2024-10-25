@@ -5,5 +5,5 @@ import android.content.Context;
 import com.mch.philetiptip.Logic.Meldung;
 
 public interface IMeldungsSpeicherer {
-    public void speichereMeldung(Meldung meldung, Context context);
+    public void speichereMeldung(Meldung meldung);
 }

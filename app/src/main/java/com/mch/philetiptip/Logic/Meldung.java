@@ -1,7 +1,6 @@
 package com.mch.philetiptip.Logic;
 
-import android.util.Log;
-
+import com.mch.philetiptip.Enums.EMeldungsart;
 import com.mch.philetiptip.Logic.Data.Adresse;
 
 import java.io.Serializable;
@@ -12,7 +11,7 @@ public class Meldung implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Adresse meldungsAdresse;
-    private Meldungsart meldungsart;
+    private EMeldungsart meldungsart;
     private String meldungstext;
 
     private int meldungsId;
@@ -32,11 +31,11 @@ public class Meldung implements Serializable {
         this.meldungstext = "";
     }
 
-    public Meldungsart getMeldungsart() {
+    public EMeldungsart getMeldungsart() {
         return meldungsart;
     }
 
-    public void setMeldungsart(Meldungsart meldungsart) {
+    public void setMeldungsart(EMeldungsart meldungsart) {
         this.meldungsart = meldungsart;
     }
 

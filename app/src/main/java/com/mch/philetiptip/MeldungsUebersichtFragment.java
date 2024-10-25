@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
@@ -27,11 +26,7 @@ public class MeldungsUebersichtFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_meldungs_uebersicht, container, false);
         meldungenListView = view.findViewById(R.id.meldungen_list);
 
-        meldungenListe = PhileTipTipMain.getInstance().getMeldungsHolder().getMeldungen();
-
-        Log.e("MeldungsUebersichtFragment", "Anzahl der Meldungen: " + meldungenListe.size());
-        MeldungenAdapter adapter = new MeldungenAdapter(getContext(), meldungenListe);
-        meldungenListView.setAdapter(adapter);
+        updateMeldungenListe();
 
         // Bei Klick auf eine Meldung zum DetailFragment wechseln
         meldungenListView.setOnItemClickListener((parent, view1, position, id) -> {
@@ -39,5 +34,13 @@ public class MeldungsUebersichtFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void updateMeldungenListe() {
+        meldungenListe = PhileTipTipMain.getInstance().getMeldungsHolder().getMeldungen();
+
+        Log.e("MeldungsUebersichtFragment", "Anzahl der Meldungen: " + meldungenListe.size());
+        MeldungenAdapter adapter = new MeldungenAdapter(getContext(), meldungenListe);
+        meldungenListView.setAdapter(adapter);
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.mch.philetiptip.Logic.Meldung;
+import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,12 +17,14 @@ import java.io.IOException;
 
 public class JSonMeldungsSpeicherer implements IMeldungsSpeicherer{
     @Override
-    public void speichereMeldung(Meldung meldung, Context context) {
+    public void speichereMeldung(Meldung meldung) {
         Gson gson = new Gson();
         String jsonString = gson.toJson(meldung);
         try {
             // Counter aus Datei lesen
-            File counterFile = new File(context.getFilesDir(), "counter.txt");
+            Context tempContext = PhileTipTipMain.getInstance().getContext();
+            //TODO: Nullabprüfung
+            File counterFile = new File(tempContext.getFilesDir(), "counter.txt");
             int counter = 0;
             if (counterFile.exists()) {
                 try (BufferedReader br = new BufferedReader(new FileReader(counterFile))) {
@@ -31,7 +34,7 @@ public class JSonMeldungsSpeicherer implements IMeldungsSpeicherer{
                 }
             }
 
-            FileOutputStream fos = context.openFileOutput("meldung_" + counter + ".json", Context.MODE_PRIVATE);
+            FileOutputStream fos = tempContext.openFileOutput("meldung_" + counter + ".json", Context.MODE_PRIVATE);
             fos.write(jsonString.getBytes());
             fos.close();
 

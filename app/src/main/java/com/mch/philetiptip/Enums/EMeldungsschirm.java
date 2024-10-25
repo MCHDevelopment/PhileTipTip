@@ -1,6 +1,6 @@
-package com.mch.philetiptip.Logic;
+package com.mch.philetiptip.Enums;
 
-public enum Meldungsschirm {
+public enum EMeldungsschirm {
 
     ArtUndText(0),
     Adresse(1),
@@ -9,7 +9,7 @@ public enum Meldungsschirm {
 
     private final int index;
 
-    Meldungsschirm(int index) {
+    EMeldungsschirm(int index) {
         this.index = index;
     }
 

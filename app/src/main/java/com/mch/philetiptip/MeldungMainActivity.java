@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldung;
 import com.mch.philetiptip.Logic.MeldungsprozessActivity;
-import com.mch.philetiptip.Logic.Meldungsschirm;
+import com.mch.philetiptip.Enums.EMeldungsschirm;
 import com.mch.philetiptip.Logic.Persistance.JSonMeldungsSpeicherer;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
@@ -28,7 +28,7 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
     private ImageButton buttonWeiter;
     private ImageButton buttonSubmit;
 
-    private Meldungsschirm currentSchirm = Meldungsschirm.ArtUndText;
+    private EMeldungsschirm currentSchirm = EMeldungsschirm.ArtUndText;
 
     private Meldung meldung;
 
@@ -44,7 +44,7 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
 
         //Fuer das erste Fragment findet kein Aufruf der Schirmwechsel Funktion statt, deswegen muss
         //setzeButtonSichtbarkeit hier losgetreten werden
-        currentSchirm = Meldungsschirm.ArtUndText;
+        currentSchirm = EMeldungsschirm.ArtUndText;
         setzeButtonSichtbarkeit();
 
         // Fragmente einmalig erstellen und eine Referenz auf die Meldung uebergeben
@@ -139,18 +139,18 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
     }
 
     private void wechselZumNaechstenSchirm(){
-        Meldungsschirm zielSchirm = currentSchirm;
+        EMeldungsschirm zielSchirm = currentSchirm;
         switch (currentSchirm){
             case ArtUndText:
                 dateneingabeFragment.fuelleMeldung();
-                zielSchirm = Meldungsschirm.Adresse;
+                zielSchirm = EMeldungsschirm.Adresse;
                 break;
             case Adresse:
                 adresseingabeFragment.fuelleAdresse();
-                zielSchirm = Meldungsschirm.Foto;
+                zielSchirm = EMeldungsschirm.Foto;
                 break;
             case Foto:
-                zielSchirm = Meldungsschirm.Pruefen;
+                zielSchirm = EMeldungsschirm.Pruefen;
                 break;
             case Pruefen:
                 break;
@@ -170,18 +170,18 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
     }
 
     private void wechselZumVorherigemSchirm(){
-        Meldungsschirm zielSchirm = currentSchirm;
+        EMeldungsschirm zielSchirm = currentSchirm;
         switch (currentSchirm){
             case ArtUndText:
                 break;
             case Adresse:
-                zielSchirm = Meldungsschirm.ArtUndText;
+                zielSchirm = EMeldungsschirm.ArtUndText;
                 break;
             case Foto:
-                zielSchirm = Meldungsschirm.Adresse;
+                zielSchirm = EMeldungsschirm.Adresse;
                 break;
             case Pruefen:
-                zielSchirm = Meldungsschirm.Foto;
+                zielSchirm = EMeldungsschirm.Foto;
                 break;
         }
 
@@ -189,7 +189,7 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
     }
 
     //public damit auch das PruefenFragment darauf zugreifen kann um einen Rueckweg zu erlauben
-    public void zeigeFragment(Meldungsschirm zielSchirm){
+    public void zeigeFragment(EMeldungsschirm zielSchirm){
         Fragment tempFragment = null;
         switch (zielSchirm){
             case ArtUndText:
@@ -244,7 +244,7 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
 
         //TODO: Bessere Auswahl ob off- oder Online
         JSonMeldungsSpeicherer jSonMeldungsSpeicherermeldungsSpeicherer = new JSonMeldungsSpeicherer();
-        jSonMeldungsSpeicherermeldungsSpeicherer.speichereMeldung(meldung, getApplicationContext());
+        jSonMeldungsSpeicherermeldungsSpeicherer.speichereMeldung(meldung);
 
         ProgressBar progressBar;
         final int[] progressStatus = {0};

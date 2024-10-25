@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         PhileTipTipMain.getInstance().initUserData(123);
+        PhileTipTipMain.getInstance().initApplicationContext(getApplicationContext());
 
         prozentTextView = findViewById(R.id.prozentTextView);
         ladeSchrittTextView = findViewById(R.id.ladeSchrittTextView);

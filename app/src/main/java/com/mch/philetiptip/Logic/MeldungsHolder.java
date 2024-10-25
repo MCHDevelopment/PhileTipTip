@@ -1,5 +1,9 @@
 package com.mch.philetiptip.Logic;
 
+import android.util.Log;
+
+import com.mch.philetiptip.Logic.Persistance.JSonMeldungsLader;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +22,23 @@ public class MeldungsHolder {
 
     public List<Meldung> getMeldungen() {
         return meldungen;
+    }
+
+    public void syncMeldungen(){
+        meldungen.clear();
+
+        //TODO: Bessere Auswahl ob off- oder Online
+        JSonMeldungsLader jSonMeldungsLader = new JSonMeldungsLader();
+        int meldungsAnzahl = jSonMeldungsLader.ladeAnzahlMeldungen();
+
+        Log.e("MeldungsHolder", "meldungsAnzahl: " + meldungsAnzahl);
+        Meldung tempMeldung = null;
+
+        for(int i = 0; i < meldungsAnzahl; i++){
+            tempMeldung = jSonMeldungsLader.ladeMeldung(i);
+            if(tempMeldung != null){
+                meldungen.add(tempMeldung);
+            }
+        }
     }
 }

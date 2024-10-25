@@ -6,13 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldung;
-import com.mch.philetiptip.Logic.Meldungsart;
+import com.mch.philetiptip.Enums.EMeldungsart;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 public class MeldungDateneingabeFragment extends Fragment {
@@ -66,18 +65,18 @@ public class MeldungDateneingabeFragment extends Fragment {
                 .show(); // Toast anzeigen*/
     }
 
-    private Meldungsart getSelectedMeldungsart() {
+    private EMeldungsart getSelectedMeldungsart() {
         // Hole die Position der aktuellen Auswahl
         int selectedPosition = typeSpinner.getSelectedItemPosition();
 
         // Mapping der Spinner-Position auf die Enum-Werte (Positionen sind sprachunabhängig)
         switch (selectedPosition) {
             case 0:
-                return Meldungsart.Sonstige;
+                return EMeldungsart.Sonstige;
             case 1:
-                return Meldungsart.Schaedlingsbefall;
+                return EMeldungsart.Schaedlingsbefall;
             case 2:
-                return Meldungsart.Unkrautbewuchs;
+                return EMeldungsart.Unkrautbewuchs;
             default:
                 throw new IllegalArgumentException("Unbekannte Meldungsart an Position: " + selectedPosition);
         }

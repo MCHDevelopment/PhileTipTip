@@ -1,5 +1,6 @@
 package com.mch.philetiptip.Logic;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.mch.philetiptip.Logic.Data.Angestellter;
@@ -11,7 +12,7 @@ public class PhileTipTipMain {
     private static PhileTipTipMain instance;
 
     private MeldungsHolder meldungsHolder;
-
+    private Context context;
     private Person nutzer;
 
     private PhileTipTipMain(){
@@ -34,11 +35,19 @@ public class PhileTipTipMain {
         //instance.nutzer = new TeamLeiter("Thea", "Teamleiterin", 789);
     }
 
+    public void initApplicationContext(Context context){
+        this.context = context;
+    }
+
     public MeldungsHolder getMeldungsHolder() {
         return meldungsHolder;
     }
 
     public Person getNutzer() {
         return nutzer;
+    }
+
+    public Context getContext() {
+        return context;
     }
 }

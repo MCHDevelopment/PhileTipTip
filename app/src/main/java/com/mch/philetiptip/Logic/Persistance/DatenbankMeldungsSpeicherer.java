@@ -6,7 +6,7 @@ import com.mch.philetiptip.Logic.Meldung;
 
 public class DatenbankMeldungsSpeicherer implements IMeldungsSpeicherer{
     @Override
-    public void speichereMeldung(Meldung meldung, Context context) {
+    public void speichereMeldung(Meldung meldung) {
 
     }
 }

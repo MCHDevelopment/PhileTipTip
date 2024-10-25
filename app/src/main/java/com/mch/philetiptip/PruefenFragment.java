@@ -1,8 +1,6 @@
 package com.mch.philetiptip;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldung;
-import com.mch.philetiptip.Logic.Meldungsschirm;
+import com.mch.philetiptip.Enums.EMeldungsschirm;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 public class PruefenFragment extends Fragment {
@@ -65,7 +63,7 @@ public class PruefenFragment extends Fragment {
         buttonMeldungEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MeldungMainActivity) getActivity()).zeigeFragment(Meldungsschirm.ArtUndText);
+                ((MeldungMainActivity) getActivity()).zeigeFragment(EMeldungsschirm.ArtUndText);
             }
         });
     }
@@ -76,7 +74,7 @@ public class PruefenFragment extends Fragment {
         buttonAdressEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MeldungMainActivity) getActivity()).zeigeFragment(Meldungsschirm.Adresse);
+                ((MeldungMainActivity) getActivity()).zeigeFragment(EMeldungsschirm.Adresse);
             }
         });
     }
@@ -87,7 +85,7 @@ public class PruefenFragment extends Fragment {
         buttonImageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MeldungMainActivity) getActivity()).zeigeFragment(Meldungsschirm.Foto);
+                ((MeldungMainActivity) getActivity()).zeigeFragment(EMeldungsschirm.Foto);
             }
         });
     }
