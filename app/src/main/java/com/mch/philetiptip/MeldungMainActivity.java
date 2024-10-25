@@ -130,11 +130,8 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
 
     private void configureWeiterButton() {
         buttonWeiter = findViewById(R.id.button_continue);
-        buttonWeiter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonWeiter.setOnClickListener(v ->  {
                 wechselZumNaechstenSchirm();
-            }
         });
     }
 
@@ -161,11 +158,8 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
 
     private void configureZurueckButton() {
         buttonZurueck = findViewById(R.id.button_back);
-        buttonZurueck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonZurueck.setOnClickListener(v ->  {
                 wechselZumVorherigemSchirm();
-            }
         });
     }
 
@@ -226,13 +220,10 @@ public class MeldungMainActivity extends MeldungsprozessActivity {
 
     private void configureSubmitButton(){
         buttonSubmit = findViewById(R.id.button_submit);
-        buttonSubmit.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonSubmit.setOnClickListener(v -> {
                 projektEintragen();
                 //TODO: Meldung in Datenbank anlegen
                 //TODO: Neue Methode zum Schirmwechsel
-            }
         });
     }
 

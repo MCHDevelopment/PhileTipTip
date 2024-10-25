@@ -34,11 +34,8 @@ public class ImpressumActivity extends AppCompatActivity {
 
     private void configureHomeButton(){
         ImageButton buttonHome = findViewById(R.id.button_home);
-        buttonHome.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonHome.setOnClickListener(v -> {
                 startActivity(new Intent(ImpressumActivity.this, MenueActivity.class));
-            }
         });
     }
 }

@@ -47,9 +47,7 @@ public class FotoFragment extends Fragment {
                 /*
                 ImageButton buttonFoto = view.findViewById(R.id.button_camera);
 
-        buttonFoto.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonFoto.setOnClickListener(v -> {
                 //TODO: Foto machen
 
                 // Toast
@@ -57,7 +55,6 @@ public class FotoFragment extends Fragment {
                                 "onClick für Kamera-Button aufgerufen", // Toast-Nachricht
                                 Toast.LENGTH_LONG) // Anzeigedauer
                         .show(); // Toast anzeigen
-            }
         });
          */
     }
@@ -65,9 +62,7 @@ public class FotoFragment extends Fragment {
     private void configureGalleryButton(View view){
         /*
         ImageButton buttonGallerie = view.findViewById(R.id.button_gallery);
-        buttonGallerie.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonGallerie.setOnClickListener(v -> {
                 //TODO: Gallerie oeffnen Bild auswaehlen
 
                 // Toast
@@ -75,7 +70,6 @@ public class FotoFragment extends Fragment {
                                 "onClick für Gallerie-Button aufgerufen", // Toast-Nachricht
                                 Toast.LENGTH_LONG) // Anzeigedauer
                         .show(); // Toast anzeigen
-            }
         });
         */
     }

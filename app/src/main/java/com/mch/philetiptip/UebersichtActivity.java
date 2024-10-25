@@ -54,13 +54,11 @@ public class UebersichtActivity extends MeldungsprozessActivity {
     private void configureSyncButton(){
         buttonMeldungSync = findViewById(R.id.button_sync);
 
-        buttonMeldungSync.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonMeldungSync.setOnClickListener(v -> {
                 PhileTipTipMain.getInstance().getMeldungsHolder().syncMeldungen();
                 meldungsUebersichtFragment.updateMeldungenListe();
             }
-        });
+        );
     }
 
     private void configureHomeButton() {

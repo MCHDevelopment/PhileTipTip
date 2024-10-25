@@ -15,9 +15,7 @@ public class MeldungsprozessActivity extends AppCompatActivity {
 
     protected void configureHomeButton(int homeButtonId, final Class<?> targetActivity) {
         ImageButton buttonHome = findViewById(homeButtonId);
-        buttonHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonHome.setOnClickListener(v ->  {
                 // AlertDialog erstellen
                 AlertDialog.Builder builder = new AlertDialog.Builder(MeldungsprozessActivity.this);
                 builder.setTitle("Vorsicht");
@@ -59,9 +57,7 @@ public class MeldungsprozessActivity extends AppCompatActivity {
                         negativeButton.setLayoutParams(layoutParams);
                     }
                 });
-
                 dialog.show();
-            }
         });
     }
 }

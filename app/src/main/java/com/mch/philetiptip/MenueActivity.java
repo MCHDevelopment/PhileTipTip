@@ -40,52 +40,37 @@ public class MenueActivity extends AppCompatActivity {
 
     private void configureMeldungButton(){
         Button buttonMeldung = findViewById(R.id.button_meldung_machen);
-        buttonMeldung.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonMeldung.setOnClickListener(v -> {
                 startActivity(new Intent(MenueActivity.this, MeldungMainActivity.class));
-            }
         });
     }
 
     private void configureUebersichtButton(){
         Button buttonProjekte = findViewById(R.id.button_meldungen_einsehen);
-        buttonProjekte.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonProjekte.setOnClickListener(v -> {
                 startActivity(new Intent(MenueActivity.this, UebersichtActivity.class));
-            }
         });
     }
 
     private void configureImpressumButton(){
         Button buttonImpressum = findViewById(R.id.button_impressum);
-        buttonImpressum.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonImpressum.setOnClickListener(v -> {
                 startActivity(new Intent(MenueActivity.this, ImpressumActivity.class));
-            }
         });
     }
 
     private void configureKontaktButton(){
         Button buttonKontakt = findViewById(R.id.button_kontakt);
-        buttonKontakt.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonKontakt.setOnClickListener(v -> {
                 startActivity(new Intent(MenueActivity.this, KontaktActivity.class));
-            }
         });
     }
 
 
     private void configureDatenschutzButton(){
         Button buttonDatenschutz = findViewById(R.id.button_datenschutz);
-        buttonDatenschutz.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        buttonDatenschutz.setOnClickListener(v -> {
                 startActivity(new Intent(MenueActivity.this, DatenschutzActivity.class));
-            }
         });
     }
 }

@@ -60,33 +60,24 @@ public class PruefenFragment extends Fragment {
     private void configureMeldungEditButton(View view){
         ImageButton buttonMeldungEdit = view.findViewById(R.id.button_edit_message);
 
-        buttonMeldungEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonMeldungEdit.setOnClickListener(v -> {
                 ((MeldungMainActivity) getActivity()).zeigeFragment(EMeldungsschirm.ArtUndText);
-            }
         });
     }
 
     private void configureAdressEditButton(View view){
         ImageButton buttonAdressEdit = view.findViewById(R.id.button_edit_address);
 
-        buttonAdressEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonAdressEdit.setOnClickListener(v ->  {
                 ((MeldungMainActivity) getActivity()).zeigeFragment(EMeldungsschirm.Adresse);
-            }
         });
     }
 
     private void configureImageEditButton(View view){
         ImageButton buttonImageEdit = view.findViewById(R.id.button_edit_image);
 
-        buttonImageEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonImageEdit.setOnClickListener(v ->  {
                 ((MeldungMainActivity) getActivity()).zeigeFragment(EMeldungsschirm.Foto);
-            }
         });
     }
 

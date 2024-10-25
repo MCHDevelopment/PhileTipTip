@@ -69,9 +69,7 @@ public class AdresseingabeFragment extends Fragment {
 
     private void configureGPSButton(View view) {
         ImageButton buttonGPS = view.findViewById(R.id.button_gps);
-        buttonGPS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonGPS.setOnClickListener(v ->  {
                 //TODO: GPS Daten einholen, Adresse fuellen
 
                 // Toast
@@ -81,7 +79,6 @@ public class AdresseingabeFragment extends Fragment {
                                 Toast.LENGTH_LONG) // Anzeigedauer
                         .show(); // Toast anzeigen
                  */
-            }
         });
     }
 
