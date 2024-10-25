@@ -7,7 +7,7 @@ Für die Versionskontrolle des Projekts kommt Git zum Einsatz. Git ermöglicht e
 
 \subsubsection{Projektmanagement mit Jira}
 
-Die Projektplanung und -verfolgung erfolgt ü ber Jira, ein führendes Tool für das agile Projektmanagement. Mit Jira können Aufgaben und Anforderungen in Form von Tickets angelegt, priorisiert und nachverfolgt werden. Das Tool bietet auch Funktionen zur Sprint-Planung, Fortschrittsüberwachung und Berichterstellung, was eine effiziente und transparente Verwaltung des gesamten Entwicklungsprozesses ermöglicht.
+Die Projektplanung und -verfolgung erfolgt über Jira, ein führendes Tool für das agile Projektmanagement. Mit Jira können Aufgaben und Anforderungen in Form von Tickets angelegt, priorisiert und nachverfolgt werden. Das Tool bietet auch Funktionen zur Sprint-Planung, Fortschrittsüberwachung und Berichterstellung, was eine effiziente und transparente Verwaltung des gesamten Entwicklungsprozesses ermöglicht.
 
 \subsection{Codierstandards}
 \subsection{Best Practices und Namenskonventionen}
