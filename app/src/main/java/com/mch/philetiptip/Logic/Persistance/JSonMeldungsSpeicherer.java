@@ -98,7 +98,6 @@ public class JSonMeldungsSpeicherer implements IMeldungsSpeicherer {
         return counter;
     }
 
-
     private void speichereCounter(Context context, int counter) {
         try {
             ContentValues values = new ContentValues();

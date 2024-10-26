@@ -31,8 +31,14 @@ public class PhileTipTipMain {
 
         //TODO: Aus Datenbank auslesen
         instance.nutzer = new Mieter("Max", "Mietermann", 123);
+        //Fuer die Mobile Version
+        //instance.nutzer = new Mieter("Matthias", "Hochmuth", 456);
         //instance.nutzer = new Angestellter("Arnold", "Angestellter", 456);
         //instance.nutzer = new TeamLeiter("Thea", "Teamleiterin", 789);
+    }
+
+    public void restoreMeldungsData(){
+        getInstance().getMeldungsHolder().syncMeldungen();
     }
 
     public void initApplicationContext(Context context){

@@ -4,20 +4,30 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.mch.philetiptip.Logic.Data.Bildquelle;
 import com.mch.philetiptip.Logic.Meldung;
 import com.mch.philetiptip.Logic.PhileTipTipMain;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 
 public class JSonMeldungsLader {
 
     private static final String DIRECTORY_PATH = "Documents/PhileTipTip/";
 
     // Lädt die Meldung aus einer JSON-Datei basierend auf dem Index
+// Lädt die Meldung aus einer JSON-Datei basierend auf dem Index
     public Meldung ladeMeldung(int index) {
         Meldung meldung = null;
         Context context = PhileTipTipMain.getInstance().getContext();
@@ -47,7 +57,33 @@ public class JSonMeldungsLader {
                     while ((line = reader.readLine()) != null) {
                         sb.append(line);
                     }
-                    Gson gson = new Gson();
+
+                    // Log der gesamten JSON
+                    Log.e("JSonMeldungsLader", "Geladene JSON: " + sb.toString());
+
+                    // Gson-Instanz mit benutzerdefinierter Deserialisierung für Bildquelle
+                    Gson gson = new GsonBuilder()
+                            .registerTypeAdapter(Bildquelle.class, new JsonDeserializer<Bildquelle>() {
+                                @Override
+                                public Bildquelle deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                                    JsonObject jsonObject = json.getAsJsonObject();
+                                    String uriString = null;
+
+                                    if (jsonObject.has("localUriString") && !jsonObject.get("localUriString").isJsonNull()) {
+                                        uriString = jsonObject.get("localUriString").getAsString();
+                                    }
+
+                                    // Log der URI-Zeichenkette, um sicherzustellen, dass sie extrahiert wird
+                                    Log.e("JSonMeldungsLader", "Extrahierte URI: " + uriString);
+
+                                    Bildquelle bildquelle = new Bildquelle();
+                                    bildquelle.setLocalUriString(uriString);  // Falls es einen Setter gibt; alternativ direkt setzen
+                                    return bildquelle;
+                                }
+                            })
+                            .create();
+
+                    // Deserialisierung der JSON-Datei in ein Meldung-Objekt
                     meldung = gson.fromJson(sb.toString(), Meldung.class);
                 }
             }

@@ -39,7 +39,6 @@ public class MeldungsUebersichtFragment extends Fragment {
     public void updateMeldungenListe() {
         meldungenListe = PhileTipTipMain.getInstance().getMeldungsHolder().getMeldungen();
 
-        Log.e("MeldungsUebersichtFragment", "Anzahl der Meldungen: " + meldungenListe.size());
         MeldungenAdapter adapter = new MeldungenAdapter(getContext(), meldungenListe);
         meldungenListView.setAdapter(adapter);
     }

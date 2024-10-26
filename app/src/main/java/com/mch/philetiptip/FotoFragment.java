@@ -1,11 +1,14 @@
 package com.mch.philetiptip;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,25 +18,22 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.content.FileProvider;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldung;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-
-import androidx.core.content.ContextCompat;
-
-import java.io.File;
-import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class FotoFragment extends Fragment {
 
     private Meldung meldung;
-    // Initialisiere den ActivityResultLauncher, final verhindert irrtuemliches ueberschreiben, direktes Initialisieren bei der Deklaration vermeidet NullPointerException
+    private Uri photoUri;
+
     private final ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -41,33 +41,78 @@ public class FotoFragment extends Fragment {
                     Intent data = result.getData();
                     if (data != null && data.getData() != null) {
                         Uri selectedImageUri = data.getData();
-                        meldung.getBildquelle().setBildquelle(selectedImageUri);
+
+                        // Prüfen, ob der URI lesbar ist oder ob wir über MediaStore darauf zugreifen müssen
+                        Uri readableUri = getReadableUriFromGallery(selectedImageUri);
+                        if (readableUri != null) {
+                            meldung.getBildquelle().setBildquelle(readableUri);
+                        } else {
+                            Toast.makeText(requireContext(), "Bild konnte nicht geladen werden", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });
-    // Berechtigungs-Launcher initialisieren, final verhindert irrtuemliches ueberschreiben, direktes Initialisieren bei der Deklaration vermeidet NullPointerException
-    private final ActivityResultLauncher<String> galleryPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-        if (isGranted) {
-            // Berechtigung wurde erteilt, Galerie öffnen
-            openGallery();
-        } else {
-            // Berechtigung wurde verweigert, hier ggf. eine Nachricht anzeigen
+
+    /**
+     * Konvertiert die URI in eine lesbare URI, falls sie von einem Content Provider stammt.
+     * Hierzu wird der InputStream genutzt und als MediaStore URI gespeichert.
+     */
+    private Uri getReadableUriFromGallery(Uri originalUri) {
+        try {
+            // Einen temporären InputStream aus der Quelle des Bildes erstellen
+            InputStream inputStream = requireContext().getContentResolver().openInputStream(originalUri);
+            if (inputStream == null) return null;
+
+            // Zeitstempel für eindeutigen Dateinamen
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+            String imageFileName = "JPEG_" + timeStamp + ".jpg";
+
+            // ContentValues für den MediaStore-Eintrag vorbereiten
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.Images.Media.DISPLAY_NAME, imageFileName);
+            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+            values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/PhileTipTip");
+
+            // Bild über MediaStore in die Galerie schreiben
+            Uri readableUri = requireContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            if (readableUri != null) {
+                // InputStream in die neue Datei kopieren
+                OutputStream outputStream = requireContext().getContentResolver().openOutputStream(readableUri);
+                if (outputStream != null) {
+                    byte[] buffer = new byte[1024];
+                    int length;
+                    while ((length = inputStream.read(buffer)) > 0) {
+                        outputStream.write(buffer, 0, length);
+                    }
+                    outputStream.close();
+                }
+            }
+            inputStream.close();
+            return readableUri;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-    });
+    }
 
-    private Uri photoUri;
+    private final ActivityResultLauncher<String> galleryPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    openGallery();
+                } else {
+                    Toast.makeText(requireContext(), "Zugriff auf Galerie verweigert", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-    // Camera Launcher initialisieren, final verhindert irrtuemliches ueberschreiben, direktes Initialisieren bei der Deklaration vermeidet NullPointerException
-    private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
-                    // Hier kannst du das aufgenommene Bild weiterverarbeiten
                     meldung.getBildquelle().setBildquelle(photoUri);
                 }
-            }
-    );
-    // Berechtigungs-Launcher für Kamera initialisieren, final verhindert irrtuemliches ueberschreiben, direktes Initialisieren bei der Deklaration vermeidet NullPointerException
+            });
+
     private final ActivityResultLauncher<String> cameraPermissionLauncher = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(),
             isGranted -> {
@@ -76,8 +121,7 @@ public class FotoFragment extends Fragment {
                 } else {
                     Toast.makeText(requireContext(), "Kamerazugriff verweigert", Toast.LENGTH_SHORT).show();
                 }
-            }
-    );
+            });
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,12 +129,9 @@ public class FotoFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate das Fragment-Layout
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_foto, container, false);
 
-        // Meldung aus dem Bundle holen
         if (getArguments() != null) {
             meldung = (Meldung) getArguments().getSerializable("meldung");
         }
@@ -100,35 +141,22 @@ public class FotoFragment extends Fragment {
         return view;
     }
 
-    private void configureButtons(View view){
-        configureFotoButton(view);
-        configureGalleryButton(view);
-    }
-
-    private void configureFotoButton(View view){
+    private void configureButtons(View view) {
         ImageButton buttonFoto = view.findViewById(R.id.button_camera);
-        buttonFoto.setOnClickListener(v -> {
-            checkCameraPermissionAndOpen();
-        });
-    }
+        buttonFoto.setOnClickListener(v -> checkCameraPermissionAndOpen());
 
-    private void configureGalleryButton(View view){
-        ImageButton buttonGallerie = view.findViewById(R.id.button_gallery);
-        buttonGallerie.setOnClickListener(v -> {
-            checkPermissionAndOpenGallery();
-        });
+        ImageButton buttonGallery = view.findViewById(R.id.button_gallery);
+        buttonGallery.setOnClickListener(v -> checkPermissionAndOpenGallery());
     }
 
     private void checkPermissionAndOpenGallery() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13 (API 33) und höher - READ_MEDIA_IMAGES ist erforderlich
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED) {
                 openGallery();
             } else {
                 galleryPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES);
             }
         } else {
-            // Für ältere Versionen READ_EXTERNAL_STORAGE anfragen
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 openGallery();
             } else {
@@ -151,29 +179,23 @@ public class FotoFragment extends Fragment {
     }
 
     private void openCamera() {
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (cameraIntent.resolveActivity(requireActivity().getPackageManager()) != null) {
-            // Temporäre Datei für das Bild erstellen
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            // Fortfahren, wenn die Datei erfolgreich erstellt wurde
-            if (photoFile != null) {
-                photoUri = FileProvider.getUriForFile(requireContext(), "com.mch.philetiptip.fileprovider", photoFile);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                cameraLauncher.launch(cameraIntent);
-            }
+        photoUri = createImageUri();
+        if (photoUri != null) {
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            cameraLauncher.launch(cameraIntent);
+        } else {
+            Toast.makeText(requireContext(), "Fehler beim Erstellen des Speicherorts", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private File createImageFile() throws IOException {
-        // Dateiname basierend auf aktuellem Datum und Zeit erstellen
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        return File.createTempFile(imageFileName, ".jpg", storageDir);
+    private Uri createImageUri() {
+        ContentValues values = new ContentValues();
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, "JPEG_" + timeStamp + ".jpg");
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+        values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/PhileTipTip");
+
+        return requireContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
     }
 }

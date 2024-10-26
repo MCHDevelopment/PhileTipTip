@@ -45,4 +45,13 @@ public class Bildquelle implements Serializable {
         remoteUrlString = null;
         localUriString = null;
     }
+
+    //Notwendig fuer die Deserialisierung des JSON Objekts
+    public void setLocalUriString(String uriString) {
+        this.localUriString = uriString;
+    }
+
+    public String getLocalUriString() {
+        return localUriString;
+    }
 }

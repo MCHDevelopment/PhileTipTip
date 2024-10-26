@@ -1,6 +1,7 @@
 package com.mch.philetiptip.Optic;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,10 @@ public class MeldungenAdapter extends BaseAdapter {
 
         ImageView thumbnailImageView = convertView.findViewById(R.id.meldung_thumbnail);
         // Beispielbild setzen (später könntest du hier das tatsächliche Bild setzen)
-        thumbnailImageView.setImageResource(R.drawable.ic_launcher_background);
+
+        Log.e("MeldungenAdapter", "Local URI String: " + meldung.getBildquelle().getLocalUriString());
+        Log.e("MeldungenAdapter", "Bildquelle: " + meldung.getBildquelle().getLocalUri());
+        thumbnailImageView.setImageURI(meldung.getBildquelle().getLocalUri());//.setImageResource(R.drawable.ic_launcher_background);
 
         return convertView;
     }
