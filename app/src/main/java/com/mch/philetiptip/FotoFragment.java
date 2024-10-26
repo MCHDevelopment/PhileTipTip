@@ -49,7 +49,7 @@ public class FotoFragment extends Fragment {
                 Intent data = result.getData();
                 if (data != null && data.getData() != null) {
                     Uri selectedImageUri = data.getData();
-                    // Nutze das Bild weiter
+                    meldung.getBildquelle().setBildquelle(selectedImageUri);
                 }
             }
         });

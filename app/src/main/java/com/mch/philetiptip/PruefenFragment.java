@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,8 @@ public class PruefenFragment extends Fragment {
 
     private Meldung meldung;
 
+    ImageView vorschauBild;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,11 +36,12 @@ public class PruefenFragment extends Fragment {
 
         configureButtons(view);
         configureTextviews(view);
+        configureBild(view);
+
         fuelleInhalte();
 
         return view;
     }
-
     private void configureTextviews(View view) {
         configureMeldungTextview(view);
         configureAdressTextview(view);
@@ -81,18 +85,24 @@ public class PruefenFragment extends Fragment {
         });
     }
 
-    private void fuelleInhalte(){
-
-        PhileTipTipMain phileTipTipMain = PhileTipTipMain.getInstance();
-        fuelleMeldungsfeld();
-        fuelleAdressfeld(phileTipTipMain);
+    private void configureBild(View view) {
+        vorschauBild = view.findViewById(R.id.image_preview);
     }
 
-    private void fuelleAdressfeld(PhileTipTipMain phileTipTipMain) {
+    private void fuelleInhalte(){
+        fuelleMeldungsfeld();
+        fuelleAdressfeld();
+        fuelleBild();
+    }
+    private void fuelleAdressfeld() {
         textAdresse.setText(meldung.getMeldungAdresse().getAdressString());
     }
 
     private void fuelleMeldungsfeld() {
         textMeldung.setText(meldung.getMeldungstext());
+    }
+
+    private void fuelleBild() {
+        vorschauBild.setImageURI(meldung.getBildquelle().getLocalUri());
     }
 }

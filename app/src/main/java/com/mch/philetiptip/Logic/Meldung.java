@@ -1,7 +1,10 @@
 package com.mch.philetiptip.Logic;
 
+import android.net.Uri;
+
 import com.mch.philetiptip.Enums.EMeldungsart;
 import com.mch.philetiptip.Logic.Data.Adresse;
+import com.mch.philetiptip.Logic.Data.Bildquelle;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,8 +22,11 @@ public class Meldung implements Serializable {
     private int melderId;
     private Date meldungsDatum;
 
+    private Bildquelle bildquelle;
+
     public Meldung(int melderId) {
         meldungsAdresse = new Adresse();
+        bildquelle = new Bildquelle();
         this.melderId = melderId;
         resetMeldung();
     }
@@ -29,6 +35,7 @@ public class Meldung implements Serializable {
         this.meldungsAdresse.resetAdresse();
         this.meldungsart = meldungsart.Sonstige;
         this.meldungstext = "";
+        this.bildquelle.resetBildquelle();
     }
 
     public EMeldungsart getMeldungsart() {
@@ -61,5 +68,9 @@ public class Meldung implements Serializable {
 
     public void setMeldungsId(int meldungsId) {
         this.meldungsId = meldungsId;
+    }
+
+    public Bildquelle getBildquelle() {
+        return bildquelle;
     }
 }
