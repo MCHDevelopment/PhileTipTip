@@ -103,6 +103,12 @@ public class PruefenFragment extends Fragment {
     }
 
     private void fuelleBild() {
-        vorschauBild.setImageURI(meldung.getBildquelle().getLocalUri());
+        //TODO: Reihenfolge umdrehen, erst Online, dann Offline - Onlinechecking muss noch implementiert werden
+        if (meldung.getBildquelle().hasLocalUri()) {
+            vorschauBild.setImageURI(meldung.getBildquelle().getLocalUri());
+        } else if (meldung.getBildquelle().hasRemoteUrl()) {
+            //TODO: Bild von der Onlinequelle laden
+            // Ladebild für eine URL, zum Beispiel mit Glide oder Picasso
+        }
     }
 }

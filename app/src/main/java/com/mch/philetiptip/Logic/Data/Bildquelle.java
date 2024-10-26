@@ -17,8 +17,12 @@ public class Bildquelle implements Serializable {
         this.remoteUrl = remoteUrl;
     }
 
-    public boolean isLocal() {
+    public boolean hasLocalUri() {
         return localUri != null;
+    }
+
+    public boolean hasRemoteUrl() {
+        return remoteUrl != null;
     }
 
     public Uri getLocalUri() {

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -31,11 +33,21 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FotoFragment extends Fragment {
 
     private Meldung meldung;
     private ActivityResultLauncher<Intent> galleryLauncher;
     private ActivityResultLauncher<String> permissionLauncher;
+
+    private Uri photoUri;
+
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private ActivityResultLauncher<String> cameraPermissionLauncher;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +75,29 @@ public class FotoFragment extends Fragment {
                 // Berechtigung wurde verweigert, hier ggf. eine Nachricht anzeigen
             }
         });
+
+        // Camera Launcher initialisieren
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // Hier kannst du das aufgenommene Bild weiterverarbeiten
+                        meldung.getBildquelle().setBildquelle(photoUri);
+                    }
+                }
+        );
+
+        // Berechtigungs-Launcher für Kamera initialisieren
+        cameraPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                isGranted -> {
+                    if (isGranted) {
+                        openCamera();
+                    } else {
+                        Toast.makeText(requireContext(), "Kamerazugriff verweigert", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     @Override
@@ -86,15 +121,11 @@ public class FotoFragment extends Fragment {
         configureGalleryButton(view);
     }
 
-
     private void configureFotoButton(View view){
-                /*
-                ImageButton buttonFoto = view.findViewById(R.id.button_camera);
-
+        ImageButton buttonFoto = view.findViewById(R.id.button_camera);
         buttonFoto.setOnClickListener(v -> {
-                //TODO: Foto machen
+            checkCameraPermissionAndOpen();
         });
-         */
     }
 
     private void configureGalleryButton(View view){
@@ -125,5 +156,40 @@ public class FotoFragment extends Fragment {
     private void openGallery() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         galleryLauncher.launch(galleryIntent);
+    }
+
+    private void checkCameraPermissionAndOpen() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            openCamera();
+        } else {
+            cameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+        }
+    }
+
+    private void openCamera() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(requireActivity().getPackageManager()) != null) {
+            // Temporäre Datei für das Bild erstellen
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            // Fortfahren, wenn die Datei erfolgreich erstellt wurde
+            if (photoFile != null) {
+                photoUri = FileProvider.getUriForFile(requireContext(), "com.mch.philetiptip.fileprovider", photoFile);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                cameraLauncher.launch(cameraIntent);
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Dateiname basierend auf aktuellem Datum und Zeit erstellen
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        return File.createTempFile(imageFileName, ".jpg", storageDir);
     }
 }
