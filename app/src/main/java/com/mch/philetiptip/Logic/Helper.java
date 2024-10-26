@@ -9,4 +9,9 @@ public class Helper {
             return null;
         }
     }
+
+    public static Boolean isNullOrEmpty(String checkString) {
+        return checkString == null || checkString.isEmpty();
+    }
+
 }

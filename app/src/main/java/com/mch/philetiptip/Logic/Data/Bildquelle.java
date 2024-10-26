@@ -2,39 +2,47 @@ package com.mch.philetiptip.Logic.Data;
 
 import android.net.Uri;
 
+import com.mch.philetiptip.Logic.Helper;
+
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Bildquelle implements Serializable {
-    private Uri localUri;
-    private URL remoteUrl;
-
-    public void setBildquelle(Uri localUri) {
-        this.localUri = localUri;
-    }
-
-    public void setBildquelle(URL remoteUrl) {
-        this.remoteUrl = remoteUrl;
-    }
+    private String localUriString;
+    private String remoteUrlString;
 
     public boolean hasLocalUri() {
-        return localUri != null;
+        return !localUriString.isEmpty();
     }
 
-    public boolean hasRemoteUrl() {
-        return remoteUrl != null;
+    public void setBildquelle(Uri localUri) {
+        this.localUriString = localUri != null ? localUri.toString() : null;
     }
 
     public Uri getLocalUri() {
-        return localUri;
+        return !Helper.isNullOrEmpty(localUriString) ? Uri.parse(localUriString) : null;
+    }
+
+    public boolean hasRemoteUrl() {
+        return !Helper.isNullOrEmpty(remoteUrlString);
+    }
+
+    public void setBildquelle(URL remoteUrl) {
+        this.remoteUrlString = remoteUrl != null ? remoteUrl.toString() : null;
     }
 
     public URL getRemoteUrl() {
-        return remoteUrl;
+        try {
+            return remoteUrlString != null ? new URL(remoteUrlString) : null;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void resetBildquelle() {
-        localUri = null;
-        remoteUrl = null;
+        remoteUrlString = null;
+        localUriString = null;
     }
 }

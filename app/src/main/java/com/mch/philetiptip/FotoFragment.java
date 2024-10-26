@@ -1,7 +1,5 @@
 package com.mch.philetiptip;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,22 +13,16 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.FileProvider;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.mch.philetiptip.Logic.Meldung;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+
 import androidx.core.content.ContextCompat;
 
 import java.io.File;
@@ -41,63 +33,55 @@ import java.util.Date;
 public class FotoFragment extends Fragment {
 
     private Meldung meldung;
-    private ActivityResultLauncher<Intent> galleryLauncher;
-    private ActivityResultLauncher<String> permissionLauncher;
+    // Initialisiere den ActivityResultLauncher, final verhindert irrtuemliches ueberschreiben, direktes Initialisieren bei der Deklaration vermeidet NullPointerException
+    private final ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    if (data != null && data.getData() != null) {
+                        Uri selectedImageUri = data.getData();
+                        meldung.getBildquelle().setBildquelle(selectedImageUri);
+                    }
+                }
+            });
+    // Berechtigungs-Launcher initialisieren, final verhindert irrtuemliches ueberschreiben, direktes Initialisieren bei der Deklaration vermeidet NullPointerException
+    private final ActivityResultLauncher<String> galleryPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+        if (isGranted) {
+            // Berechtigung wurde erteilt, Galerie öffnen
+            openGallery();
+        } else {
+            // Berechtigung wurde verweigert, hier ggf. eine Nachricht anzeigen
+        }
+    });
 
     private Uri photoUri;
 
-    private ActivityResultLauncher<Intent> cameraLauncher;
-    private ActivityResultLauncher<String> cameraPermissionLauncher;
+    // Camera Launcher initialisieren, final verhindert irrtuemliches ueberschreiben, direktes Initialisieren bei der Deklaration vermeidet NullPointerException
+    private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    // Hier kannst du das aufgenommene Bild weiterverarbeiten
+                    meldung.getBildquelle().setBildquelle(photoUri);
+                }
+            }
+    );
+    // Berechtigungs-Launcher für Kamera initialisieren, final verhindert irrtuemliches ueberschreiben, direktes Initialisieren bei der Deklaration vermeidet NullPointerException
+    private final ActivityResultLauncher<String> cameraPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    openCamera();
+                } else {
+                    Toast.makeText(requireContext(), "Kamerazugriff verweigert", Toast.LENGTH_SHORT).show();
+                }
+            }
+    );
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Initialisiere den ActivityResultLauncher
-        galleryLauncher = registerForActivityResult(
-        new ActivityResultContracts.StartActivityForResult(),
-        result -> {
-            if (result.getResultCode() == Activity.RESULT_OK) {
-                Intent data = result.getData();
-                if (data != null && data.getData() != null) {
-                    Uri selectedImageUri = data.getData();
-                    meldung.getBildquelle().setBildquelle(selectedImageUri);
-                }
-            }
-        });
-
-        // Berechtigungs-Launcher initialisieren
-        permissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-            if (isGranted) {
-                // Berechtigung wurde erteilt, Galerie öffnen
-                openGallery();
-            } else {
-                // Berechtigung wurde verweigert, hier ggf. eine Nachricht anzeigen
-            }
-        });
-
-        // Camera Launcher initialisieren
-        cameraLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        // Hier kannst du das aufgenommene Bild weiterverarbeiten
-                        meldung.getBildquelle().setBildquelle(photoUri);
-                    }
-                }
-        );
-
-        // Berechtigungs-Launcher für Kamera initialisieren
-        cameraPermissionLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestPermission(),
-                isGranted -> {
-                    if (isGranted) {
-                        openCamera();
-                    } else {
-                        Toast.makeText(requireContext(), "Kamerazugriff verweigert", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
     }
 
     @Override
@@ -141,14 +125,14 @@ public class FotoFragment extends Fragment {
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED) {
                 openGallery();
             } else {
-                permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES);
+                galleryPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES);
             }
         } else {
             // Für ältere Versionen READ_EXTERNAL_STORAGE anfragen
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 openGallery();
             } else {
-                permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+                galleryPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
             }
         }
     }
