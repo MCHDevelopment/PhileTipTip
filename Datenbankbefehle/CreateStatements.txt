@@ -1,0 +1,75 @@
+CREATE TABLE meldungen (
+    meldungsId INT AUTO_INCREMENT PRIMARY KEY,
+    localUriString VARCHAR(255),
+    remoteUrlString VARCHAR(255),
+    melderId INT NOT NULL,
+    hausNummer INT,
+    ort VARCHAR(100),
+    postleitzahl INT,
+    strasse VARCHAR(100),
+    meldungsart VARCHAR(100) NOT NULL,
+    meldungstext TEXT,
+    latitude DECIMAL(9, 6),   -- Speichert die Breite
+    longitude DECIMAL(9, 6)   -- Speichert die Länge
+);
+
+CREATE TABLE kontakte (
+    kontaktId INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    telefonnummer VARCHAR(20),
+    email VARCHAR(100),
+    adressId INT,
+    FOREIGN KEY (adressId) REFERENCES adressen(adressId) ON DELETE SET NULL
+);
+
+CREATE TABLE nutzer (
+    nutzerId INT AUTO_INCREMENT PRIMARY KEY,
+    nutzerTyp ENUM('Mieter', 'Mitarbeiter', 'Eigentümer') NOT NULL
+);
+
+CREATE TABLE mieter (
+    mieterId INT AUTO_INCREMENT PRIMARY KEY,
+    nutzerId INT UNIQUE, -- nur ein Mieter pro Nutzer möglich
+    kontaktId INT,
+    FOREIGN KEY (nutzerId) REFERENCES nutzer(nutzerId),
+    FOREIGN KEY (kontaktId) REFERENCES kontakte(kontaktId)
+);
+
+CREATE TABLE eigentuemer (
+    eigentuemerId INT AUTO_INCREMENT PRIMARY KEY,
+    nutzerId INT UNIQUE, -- nur ein Eigentümer pro Nutzer möglich
+    kontaktId INT,
+    FOREIGN KEY (nutzerId) REFERENCES nutzer(nutzerId),
+    FOREIGN KEY (kontaktId) REFERENCES kontakte(kontaktId)
+);
+
+CREATE TABLE mitarbeiter (
+    mitarbeiterId INT AUTO_INCREMENT PRIMARY KEY,
+    nutzerId INT UNIQUE, -- nur ein Mitarbeiter pro Nutzer möglich
+    kontaktId INT,
+    FOREIGN KEY (nutzerId) REFERENCES nutzer(nutzerId),
+    FOREIGN KEY (kontaktId) REFERENCES kontakte(kontaktId)
+);
+
+CREATE TABLE adressen (
+    adressId INT AUTO_INCREMENT PRIMARY KEY,
+    strasse VARCHAR(100),
+    hausNummer VARCHAR(10),
+    postleitzahl VARCHAR(10),
+    ort VARCHAR(100)
+);
+
+CREATE TABLE gebaeude (
+    gebaeudeId INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    adressId INT,
+    FOREIGN KEY (adressId) REFERENCES adressen(adressId)
+);
+
+CREATE TABLE eigentuemer_gebaeude (
+    eigentuemerId INT,
+    gebaeudeId INT,
+    PRIMARY KEY (eigentuemerId, gebaeudeId),
+    FOREIGN KEY (eigentuemerId) REFERENCES eigentuemer(eigentuemerId) ON DELETE CASCADE,
+    FOREIGN KEY (gebaeudeId) REFERENCES gebaeude(gebaeudeId) ON DELETE CASCADE
+);
