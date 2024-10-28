@@ -24,6 +24,9 @@ public class Meldung implements Serializable {
 
     private Bildquelle bildquelle;
 
+    private double latitude;
+    private double longitude;
+
     public Meldung(int melderId) {
         meldungsAdresse = new Adresse();
         bildquelle = new Bildquelle();
@@ -36,6 +39,8 @@ public class Meldung implements Serializable {
         this.meldungsart = meldungsart.Sonstige;
         this.meldungstext = "";
         this.bildquelle.resetBildquelle();
+        this.latitude = 0.0d;
+        this.longitude = 0.0d;
     }
 
     public EMeldungsart getMeldungsart() {
@@ -72,5 +77,21 @@ public class Meldung implements Serializable {
 
     public Bildquelle getBildquelle() {
         return bildquelle;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

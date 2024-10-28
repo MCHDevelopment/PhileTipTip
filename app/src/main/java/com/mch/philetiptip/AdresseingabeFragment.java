@@ -160,6 +160,10 @@ public class AdresseingabeFragment extends Fragment {
                 if (location != null) {
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
+
+                    meldung.setLatitude(latitude);
+                    meldung.setLongitude(longitude);
+
                     getAddressFromLocation(latitude, longitude);
                 }
             }
