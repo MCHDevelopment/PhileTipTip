@@ -118,3 +118,27 @@ CREATE TABLE wohnung_eigentuemer (
     FOREIGN KEY (wohnungId) REFERENCES wohnung(wohnungId) ON DELETE CASCADE,
     FOREIGN KEY (eigentuemerId) REFERENCES eigentuemer(eigentuemerId) ON DELETE CASCADE
 );
+
+-- Tabelle für die Teams
+CREATE TABLE teams (
+    teamId INT AUTO_INCREMENT PRIMARY KEY,
+    teamName VARCHAR(100) NOT NULL
+);
+
+-- Verknüpfungstabelle für Teamleiter
+CREATE TABLE teamleiter (
+    teamleiterId INT AUTO_INCREMENT PRIMARY KEY,
+    mitarbeiterId INT,
+    teamId INT,
+    FOREIGN KEY (mitarbeiterId) REFERENCES mitarbeiter(mitarbeiterId),
+    FOREIGN KEY (teamId) REFERENCES teams(teamId)
+);
+
+-- Verknüpfungstabelle für Team-Mitglieder
+CREATE TABLE team_mitglieder (
+    team_mitgliedId INT AUTO_INCREMENT PRIMARY KEY,
+    mitarbeiterId INT,
+    teamId INT,
+    FOREIGN KEY (mitarbeiterId) REFERENCES mitarbeiter(mitarbeiterId),
+    FOREIGN KEY (teamId) REFERENCES teams(teamId)
+);
