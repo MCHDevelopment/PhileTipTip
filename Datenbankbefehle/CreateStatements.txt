@@ -32,7 +32,7 @@ CREATE TABLE kontakte (
 
 CREATE TABLE nutzer (
     nutzerId INT AUTO_INCREMENT PRIMARY KEY,
-    nutzerTyp ENUM('Mieter', 'Mitarbeiter', 'Eigentümer') NOT NULL
+    nutzerTyp ENUM('Mieter', 'Mitarbeiter', 'Eigentuemer') NOT NULL
 );
 
 CREATE TABLE mieter (
@@ -140,5 +140,18 @@ CREATE TABLE team_mitglieder (
     mitarbeiterId INT,
     teamId INT,
     FOREIGN KEY (mitarbeiterId) REFERENCES mitarbeiter(mitarbeiterId),
+    FOREIGN KEY (teamId) REFERENCES teams(teamId)
+);
+
+-- Tabelle für die Projekte
+CREATE TABLE projekte (
+    projektId INT AUTO_INCREMENT PRIMARY KEY,
+    meldungsId INT,
+    teamId INT,
+    anweisungen TEXT,
+    startdatum DATE,
+    enddatum DATE,
+    status ENUM('erfasst', 'inArbeit', 'abgeschlossen') DEFAULT 'erfasst',
+    FOREIGN KEY (meldungsId) REFERENCES meldungen(meldungsId),
     FOREIGN KEY (teamId) REFERENCES teams(teamId)
 );
