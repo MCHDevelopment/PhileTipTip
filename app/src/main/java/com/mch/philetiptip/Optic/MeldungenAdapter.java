@@ -54,11 +54,7 @@ public class MeldungenAdapter extends BaseAdapter {
         adresseTextView.setText(meldung.getMeldungAdresse().getAdressString());
 
         ImageView thumbnailImageView = convertView.findViewById(R.id.meldung_thumbnail);
-        // Beispielbild setzen (später könntest du hier das tatsächliche Bild setzen)
-
-        Log.e("MeldungenAdapter", "Local URI String: " + meldung.getBildquelle().getLocalUriString());
-        Log.e("MeldungenAdapter", "Bildquelle: " + meldung.getBildquelle().getLocalUri());
-        thumbnailImageView.setImageURI(meldung.getBildquelle().getLocalUri());//.setImageResource(R.drawable.ic_launcher_background);
+        thumbnailImageView.setImageURI(meldung.getBildquelle().getLocalUri());
 
         return convertView;
     }

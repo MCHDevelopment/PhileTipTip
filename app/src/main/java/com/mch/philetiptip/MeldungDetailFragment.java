@@ -42,8 +42,8 @@ public class MeldungDetailFragment extends Fragment {
 
         textMeldung.setText(meldung.getMeldungstext());
         textAdresse.setText(meldung.getMeldungAdresse().getAdressString());
-        //TODO: Bild anzeigen
-        // imageFoto.setImageBitmap(...);
+
+        imageFoto.setImageURI(meldung.getBildquelle().getLocalUri());
 
         return view;
     }
