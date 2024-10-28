@@ -103,12 +103,15 @@ public class PruefenFragment extends Fragment {
     }
 
     private void fuelleBild() {
-        //TODO: Reihenfolge umdrehen, erst Online, dann Offline - Onlinechecking muss noch implementiert werden
-        if (meldung.getBildquelle().hasLocalUri()) {
-            vorschauBild.setImageURI(meldung.getBildquelle().getLocalUri());
-        } else if (meldung.getBildquelle().hasRemoteUrl()) {
-            //TODO: Bild von der Onlinequelle laden
-            // Ladebild für eine URL, zum Beispiel mit Glide oder Picasso
+        //TODO: hatBildquelle Funktion un meldung implementieren, Nullabprüfung und sehen, ob einer der Werte gefuellt ist
+        if(meldung.getBildquelle() != null){
+            //TODO: Reihenfolge umdrehen, erst Online, dann Offline - Onlinechecking muss noch implementiert werden
+            if (meldung.getBildquelle().hasLocalUri()) {
+                vorschauBild.setImageURI(meldung.getBildquelle().getLocalUri());
+            } else if (meldung.getBildquelle().hasRemoteUrl()) {
+                //TODO: Bild von der Onlinequelle laden
+                // Ladebild für eine URL, zum Beispiel mit Glide oder Picasso
+            }
         }
     }
 }

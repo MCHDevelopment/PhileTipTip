@@ -1,5 +1,6 @@
 package com.mch.philetiptip.Logic.Persistance;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
@@ -21,6 +22,7 @@ import java.io.OutputStreamWriter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 public class JSonMeldungsSpeicherer implements IMeldungsSpeicherer {
 
@@ -99,22 +101,52 @@ public class JSonMeldungsSpeicherer implements IMeldungsSpeicherer {
     }
 
     private void speichereCounter(Context context, int counter) {
-        try {
-            ContentValues values = new ContentValues();
-            values.put(MediaStore.MediaColumns.DISPLAY_NAME, "counter.txt");
-            values.put(MediaStore.MediaColumns.MIME_TYPE, "text/plain");
-            values.put(MediaStore.MediaColumns.RELATIVE_PATH, "Documents/PhileTipTip");
 
-            Uri counterUri = context.getContentResolver().insert(MediaStore.Files.getContentUri("external"), values);
+        Uri collection = MediaStore.Files.getContentUri("external");
 
-            if (counterUri != null) {
-                try (OutputStream outputStream = context.getContentResolver().openOutputStream(counterUri);
-                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {
-                    writer.write(String.valueOf(counter));
-                }
+        String selection = MediaStore.MediaColumns.RELATIVE_PATH + "=? AND " + MediaStore.MediaColumns.DISPLAY_NAME + "=?";
+
+        String[] selectionArgs = new String[]{"Documents/PhileTipTip/", "counter.txt"};
+
+        Uri counterUri = null;
+
+        // Überprüfen, ob die Datei bereits existiert
+        try (Cursor cursor = context.getContentResolver().query(
+                collection,
+                new String[]{MediaStore.MediaColumns._ID},
+                selection,
+                selectionArgs,
+                null)) {
+
+            if (cursor != null && cursor.moveToFirst()) {
+                // Datei existiert, also Uri holen
+                long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
+                counterUri = ContentUris.withAppendedId(collection, id);
+            } else {
+                // Datei existiert nicht, also neue Werte für Erstellung vorbereiten
+
+
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.MediaColumns.DISPLAY_NAME, "counter.txt");
+                values.put(MediaStore.MediaColumns.MIME_TYPE, "text/plain");
+                values.put(MediaStore.MediaColumns.RELATIVE_PATH, "Documents/PhileTipTip");
+
+                // Neue Datei erstellen
+                counterUri = context.getContentResolver().insert(collection, values);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+
+        // Datei schreiben
+        if (counterUri != null) {
+            try (OutputStream outputStream = context.getContentResolver().openOutputStream(counterUri, "wt");
+                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {
+                writer.write(String.valueOf(counter));
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
+
 }

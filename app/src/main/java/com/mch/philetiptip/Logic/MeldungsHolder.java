@@ -31,7 +31,6 @@ public class MeldungsHolder {
         JSonMeldungsLader jSonMeldungsLader = new JSonMeldungsLader();
         int meldungsAnzahl = jSonMeldungsLader.ladeAnzahlMeldungen();
 
-        Log.e("MeldungsHolder", "meldungsAnzahl: " + meldungsAnzahl);
         Meldung tempMeldung = null;
 
         for(int i = 0; i < meldungsAnzahl; i++){

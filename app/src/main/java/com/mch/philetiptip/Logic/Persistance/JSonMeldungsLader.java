@@ -58,9 +58,6 @@ public class JSonMeldungsLader {
                         sb.append(line);
                     }
 
-                    // Log der gesamten JSON
-                    Log.e("JSonMeldungsLader", "Geladene JSON: " + sb.toString());
-
                     // Gson-Instanz mit benutzerdefinierter Deserialisierung für Bildquelle
                     Gson gson = new GsonBuilder()
                             .registerTypeAdapter(Bildquelle.class, new JsonDeserializer<Bildquelle>() {
@@ -72,9 +69,6 @@ public class JSonMeldungsLader {
                                     if (jsonObject.has("localUriString") && !jsonObject.get("localUriString").isJsonNull()) {
                                         uriString = jsonObject.get("localUriString").getAsString();
                                     }
-
-                                    // Log der URI-Zeichenkette, um sicherzustellen, dass sie extrahiert wird
-                                    Log.e("JSonMeldungsLader", "Extrahierte URI: " + uriString);
 
                                     Bildquelle bildquelle = new Bildquelle();
                                     bildquelle.setLocalUriString(uriString);  // Falls es einen Setter gibt; alternativ direkt setzen

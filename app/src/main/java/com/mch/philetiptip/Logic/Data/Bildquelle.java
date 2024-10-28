@@ -13,7 +13,7 @@ public class Bildquelle implements Serializable {
     private String remoteUrlString;
 
     public boolean hasLocalUri() {
-        return !localUriString.isEmpty();
+        return !Helper.isNullOrEmpty(localUriString);
     }
 
     public void setBildquelle(Uri localUri) {
