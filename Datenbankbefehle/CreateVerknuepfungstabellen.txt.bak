@@ -1,0 +1,39 @@
+CREATE TABLE wohnung_mieter (
+    wohnungId INT,
+    mieterId INT,
+    PRIMARY KEY (wohnungId, mieterId),
+    FOREIGN KEY (wohnungId) REFERENCES wohnungen(wohnungId),
+    FOREIGN KEY (mieterId) REFERENCES nutzer(nutzerId)
+);
+
+CREATE TABLE wohnung_eigentuemer (
+    wohnungId INT,
+    eigentuemerId INT,
+    PRIMARY KEY (wohnungId, eigentuemerId),
+    FOREIGN KEY (wohnungId) REFERENCES wohnung(wohnungId) ON DELETE CASCADE,
+    FOREIGN KEY (eigentuemerId) REFERENCES eigentuemer(eigentuemerId) ON DELETE CASCADE
+);
+
+CREATE TABLE gebaeude_eigentuemer (
+    wohnungId INT,
+    eigentuemerId INT,
+    PRIMARY KEY (wohnungId, eigentuemerId),
+    FOREIGN KEY (wohnungId) REFERENCES wohnung(wohnungId) ON DELETE CASCADE,
+    FOREIGN KEY (eigentuemerId) REFERENCES eigentuemer(eigentuemerId) ON DELETE CASCADE
+);
+
+CREATE TABLE wohnanlage_eigentuemer (
+    wohnanlageId INT,
+    eigentuemerId INT,
+    PRIMARY KEY (wohnanlageId, eigentuemerId),
+    FOREIGN KEY (wohnanlageId) REFERENCES wohnanlage(wohnanlageId) ON DELETE CASCADE,
+    FOREIGN KEY (eigentuemerId) REFERENCES eigentuemer(eigentuemerId) ON DELETE CASCADE
+);
+
+CREATE TABLE team_mitglieder (
+    team_mitgliedId INT AUTO_INCREMENT PRIMARY KEY,
+    mitarbeiterId INT,
+    teamId INT,
+    FOREIGN KEY (mitarbeiterId) REFERENCES mitarbeiter(mitarbeiterId),
+    FOREIGN KEY (teamId) REFERENCES teams(teamId)
+);

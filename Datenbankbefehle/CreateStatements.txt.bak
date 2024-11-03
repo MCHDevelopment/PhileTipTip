@@ -115,7 +115,7 @@ CREATE TABLE wohnung_mieter (
     wohnungId INT,
     mieterId INT,
     PRIMARY KEY (wohnungId, mieterId),
-    FOREIGN KEY (wohnungId) REFERENCES wohnung(wohnungId),
+    FOREIGN KEY (wohnungId) REFERENCES wohnungen(wohnungId),
     FOREIGN KEY (mieterId) REFERENCES mieter(mieterId)
 );
 

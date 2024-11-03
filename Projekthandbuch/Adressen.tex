@@ -1,0 +1,142 @@
+address-form.fxml, die zusammen mit den anderen Komponenten für die Formularansicht verwendet wird:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mch.philetairusadmintool.AddressFormController" spacing="10">
+
+    <Label text="Adresse" styleClass="section-header"/>
+    <TextField fx:id="streetField" promptText="Straße"/>
+    <TextField fx:id="zipField" promptText="PLZ"/>
+    <TextField fx:id="cityField" promptText="Stadt"/>
+</VBox>
+
+
+der dazugehörige Controller, AddressFormController:
+
+package com.mch.philetairusadmintool;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
+public class AddressFormController {
+
+    @FXML
+    private TextField streetField;
+
+    @FXML
+    private TextField zipField;
+
+    @FXML
+    private TextField cityField;
+
+    public String getStreet() {
+        return streetField.getText();
+    }
+
+    public String getZip() {
+        return zipField.getText();
+    }
+
+    public String getCity() {
+        return cityField.getText();
+    }
+}
+
+und die Klasse, die später diese Daten erhalten soll (eingeladen aus dem shared Projekt in jitpack):
+
+plugins {
+  id 'java'
+  id 'application'
+  id 'org.javamodularity.moduleplugin' version '1.8.12'
+  id 'org.openjfx.javafxplugin' version '0.0.13'
+  id 'org.beryx.jlink' version '2.25.0'
+  id 'jacoco'
+}
+
+group 'com.mch'
+version '1.0-SNAPSHOT'
+
+repositories {
+  mavenCentral()
+  maven { url "https://jitpack.io" }
+}
+
+ext {
+  junitVersion = '5.10.2'
+}
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+  options.forkOptions.executable = 'javac'
+}
+application {
+  mainModule = 'com.mch.philetairusadmintool'
+  mainClass = 'com.mch.philetairusadmintool.MainApp'
+}
+
+javafx {
+  version = '17.0.6'
+  modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+  implementation('org.controlsfx:controlsfx:11.2.1')
+  implementation('com.dlsc.formsfx:formsfx-core:11.6.0') {
+    exclude(group: 'org.openjfx')
+  }
+  implementation('net.synedra:validatorfx:0.5.0') {
+    exclude(group: 'org.openjfx')
+  }
+  implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
+  implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+
+  implementation('com.github.MCHDevelopment:philetiptipshared:main-SNAPSHOT')
+
+  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+useJUnitPlatform()}
+
+jlink {
+  imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+  options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+  launcher {
+    name = 'app'
+  }
+}
+
+jlinkZip {
+  group = 'distribution'
+}
+
+jacocoTestReport {
+  dependsOn test // Tests müssen abgeschlossen sein, bevor der Report erstellt wird
+}
+
+repositories {
+  maven {
+    url "https://jitpack.io"
+    credentials {
+      username = authToken
+      password = "" // kein Passwort nötig
+    }
+  }
+}
+
+Und die Struktur der Datenbank, in der diese Daten später erfasst werden sollen:
+
+CREATE TABLE adressen (
+    adressId INT AUTO_INCREMENT PRIMARY KEY,
+    strasse VARCHAR(100),
+    hausnummer VARCHAR(10),
+    plz VARCHAR(10),
+    ort VARCHAR(100)
+);
