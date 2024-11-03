@@ -1,0 +1,61 @@
+\section{Technische Architektur}
+
+\input{E_F_004_001_Techstack}
+
+\subsection{Systemarchitektur}
+
+\subsubsection{Client-Server-Modell}
+
+Sowohl die App PhileTipTip als auch das dazugehörige Philetairus Admin Tool basieren auf einem klassischen Client-Server-Modell, bei dem die App als Client fungiert und über eine API mit einem zentralen Backend kommuniziert. Der Client (die App beziehungsweise die Desktopanwendung) sind für die Datenerfassung durch die Nutzer verantwortlich, während das Backend die Verarbeitung, Speicherung und Verwaltung dieser Daten übernimmt. Dieses Modell ermöglicht eine klare Trennung der Verantwortlichkeiten zwischen der Benutzeroberfläche und der Datenverarbeitung, was zu einer besseren Skalierbarkeit und Flexibilität führt.
+
+\subsubsection{Integration der Datenbank}
+
+Die MySQL-Datenbank ist fest in das Backend integriert und dient als zentrale Speicherinstanz für die erfassten Meldungen, sowie der Datensätze für Mieter, Mitarbeiter, Wohnanlagen und Immobilien. Jede Anfrage des Clients, die eine Datenveränderung oder -abfrage erfordert, wird vom Backend an die Datenbank weitergeleitet. Über definierte API-Endpunkte können Nutzer der App Meldungen zu Schädlingsbefall oder Unkrautbewuchs erstellen und den Status dieser Meldungen abfragen. Gleichzeitig erlaubt das Backend der Grünflächenabteilung, auf diese Daten zuzugreifen, sie zu bearbeiten und den Bearbeitungsstatus zu aktualisieren.\\
+
+Die enge Verzahnung beider Anwendungen ermöglicht es leicht, auf dieser Datenbankstruktur weitere Anwendungen aufzusetzen, um das Vorhaben der vollständigen Digitalisierung des Unternehmens Schritt für Schritt umzusetzen, wobei der Modulare Ansatz und der Modellcharakter dieses Projekts eine solide Basis bilden und die gewonnenen Erfahrungen in weitere Entwicklungen einfließen können.\\
+
+\subsubsection{Backend und API}
+
+Das Backend wird als Vermittler zwischen der App und der Datenbank fungieren. Es nimmt die Anfragen des Clients entgegen, verarbeitet sie und stellt die entsprechenden Daten bereit. Die API, die auf REST-Prinzipien basiert, stellt sicher, dass die Kommunikation zwischen der App und dem Server effizient und sicher erfolgt. Zu den wichtigsten Aufgaben des Backends gehören:
+
+\begin{itemize}
+    \item Verarbeitung von Nutzeranfragen: z.B. das Erstellen neuer Meldungen oder das Abrufen bestehender Einträge.
+    \item Sicherheit und Authentifizierung: Schutz der Daten durch Zugriffskontrollen und verschlüsselte Kommunikation.
+    \item Datenmanagement: Verwaltung und Speicherung der Daten in der MySQL-Datenbank sowie Sicherstellung der Datenintegrität.
+\end{itemize}
+
+Diese Architektur sorgt für eine flexible und robuste App, die auf wachsende Nutzerzahlen und Anforderungen skalierbar ist. Zudem ermöglicht sie eine klare Trennung zwischen Frontend (App) und Backend (Datenverarbeitung), was die Wartung und Weiterentwicklung der App erleichtert.
+
+\subsection{Technologien}
+
+\subsubsection{MySQL-Datenbank}
+
+Für die Verwaltung der Anwendungsdaten wird eine MySQL-Datenbank eingesetzt. MySQL ist ein weit verbreitetes relationales Datenbankmanagementsystem, das sich durch seine Zuverlässigkeit, hohe Performance und Skalierbarkeit auszeichnet. Die Datenbank speichert alle wichtigen Informationen, wie Benutzerdaten, Meldungen von Schädlingsbefall oder Unkrautbewuchs und deren Bearbeitungsstatus. Die Anbindung erfolgt über eine API, die die Kommunikation zwischen der App und der Datenbank ermöglicht.
+
+\subsection{Schnittstellen}
+
+\subsubsection{API zur Kommunikation zwischen Frontend und Backend}
+
+Die Kommunikation zwischen dem Frontend (der Android-App) und dem Backend erfolgt über eine RESTful API. Diese API ermöglicht eine klare und strukturierte Interaktion zwischen den beiden Komponenten, indem sie Endpunkte bereitstellt, über die die App auf die vom Backend verwalteten Daten zugreifen kann. Jede Aktion, die von der App ausgeführt wird – sei es das Erfassen einer neuen Meldung von Schädlingsbefall oder das Abrufen des Status einer bestehenden Meldung – erfolgt über HTTP-Anfragen an die API.\\
+
+Die wichtigsten API-Methoden umfassen:
+\begin{itemize}
+    \item POST: Zum Erstellen neuer Meldungen, die von Nutzern erfasst werden.
+    \item GET: Zum Abrufen von Daten, wie z.B. dem Bearbeitungsstatus einer Meldung.
+    \item PUT: Zum Aktualisieren von Daten, etwa wenn die Grünflächenabteilung den Status einer Meldung ändert.
+    \item DELETE: Für das Löschen von nicht mehr relevanten Daten.
+\end{itemize}
+
+Die API ist dabei so konzipiert, dass sie sowohl eine hohe Performance als auch eine sichere Kommunikation gewährleistet. Dies erfolgt durch die Implementierung von HTTPS zur Verschlüsselung der Datenübertragung und einer Token-basierten Authentifizierung, die den Zugriff nur für berechtigte Nutzer und Systeme ermöglicht.
+
+\subsubsection{Benachrichtigungssysteme}
+
+Neben der reinen Datenkommunikation bietet die App ein Benachrichtigungssystem, das die Nutzer über den Status ihrer Meldungen informiert. Diese Benachrichtigungen werden durch das Backend ausgelöst, wenn bestimmte Ereignisse eintreten, wie z.B.:
+
+\begin{itemize}
+    \item Eingangsbestätigung einer Meldung: Sobald ein Nutzer eine Meldung abschickt, erhält er eine Bestätigung, dass die Daten erfolgreich erfasst wurden.
+    \item Status-Updates: Sobald die Grünflächenabteilung eine Meldung bearbeitet oder den Status ändert, wird der Nutzer per Push-Benachrichtigung informiert.
+    \item Erinnerungen: Falls eine Meldung über einen längeren Zeitraum unbeantwortet bleibt, können Erinnerungen an das Bearbeitungsteam oder die Nutzer gesendet werden.
+\end{itemize}
+
+Diese Benachrichtigungen werden über Firebase Cloud Messaging (FCM) versendet, das eine zuverlässige und effiziente Zustellung von Push-Benachrichtigungen an die Android-Geräte der Nutzer sicherstellt. So bleiben die Nutzer jederzeit über den Stand ihrer Meldungen informiert, ohne aktiv in der App nachsehen zu müssen.

@@ -1,0 +1,62 @@
+\subsection{Product Goal und Product Backlog}
+%Erstellen Sie ein Product Goal und ein vorläufiges Product Backlog für die ersten 3-4 Sprints und erläutern Sie, was beim Product Backlog refinement gemacht wird
+\label{subsec:productGoalBacklog}
+
+Der Scrum Guide ordnet jedem Artefakt ein Commitment (eine Verpflichtung) zu. Im Falle des Product Backlog ist es das Product Goal. Das Produkt-Ziel oder Product Goal ist das gesetzte Ziel, auf dessen Erreichen sich das Scrum Team verpflichtet (commited) hat.  Das Product Goal ist das langfristige Ziel für das Scrum Team. Das Scrum Team muss ein Ziel erfüllen (oder aufgeben), bevor es das nächste angeht. Das Product Goal beschreibt einen zukünftigen Zustand des Produkts, welches dem Scrum Team als Planungsziel dienen kann. Das Product Goal befindet sich im Product Backlog. Der Rest des Product Backlogs entsteht, um zu definieren, was das Product Goal erfüllt  \cite{ScrumGuide}.\\
+
+%https://www.scrum.org/resources/what-product-goal?utm_source=google&utm_medium=adwords&utm_id=psmii&adgroup={groupid}&gad_source=1&gclid=EAIaIQobChMItZL9vob1hwMVlJdoCR1wHhViEAAYASAAEgKTK_D_BwE
+
+%https://www.microtool.de/wissen-online/was-ist-ein-product-goal/
+
+Vereinfacht kann man das Product Goal wörtlich als Produktziel übersetzen. Es definiert, in welche Richtung sich das Produkt Sprint für Sprint entwickeln soll. Gemeinsam mit den User Stories wird es im Product Backlog festgehalten, aus dem einzelne Einträge für die Sprints im Sprint Planning ins Sprint Backlog überführt und dann bearbeitet werden.\\
+
+Da nur Einträge, die in einem Sprint erledigt (Done) werden können zur Auswahl für das Sprint Backlog geeignet sind, müssen diese vorbereitet werden, etwa indem zu große User Stories oder Epics in kleinere, präzisere Elemente zerlegt werden. Diese Aktivität wird als Backlog Refinement bezeichnet und ist ein kontinuierlicher Vorgang, da das Product Backlog kein statischer Zustand, sondern dynamisch ist um dem agilen Ansatz gerecht zu werden.\\
+
+Es ist die Aufgabe des Product Owners (siehe ~\ref{subsubsec:scrummaster}) das Produkt-Ziel zu entwickeln und zu kommunizieren, die Product Backlog Einträge zu erstellen, durch das festlegen einer Reihenfolge zu priorisieren und diese klar zu kommunzieren.\\
+
+Neben der Planung der Arbeiten innerhalb eines Sprints (siehe ~\ref{subsec:sprint}) dient das Product-Goal auch als Maß um den Fortschritt des Projekts (etwa im Sprint Review -  siehe ~\ref{ReviewRetro}) zu prüfen, denn jedes aus einem Sprint resultierende Increment soll dazu dienen, sich dem Produktziel anzunähern. Das Product Goal fördert somit die Transparenz und den Fokus hinsichtlich des Fortschritts des Product Backlogs, so wie das Sprint-Ziel das für das Sprint Backlog tut.\\
+
+In diesem Fall deckt sich das initiale Product Goal mit der Grundidee, die für die App PhileTipTip formuliert wurde. Für die Verwendung als Product Goal wurde diese Idee ein wenig straffer formuliert und einzelne Details, die sich in der ursprünglichen Beschreibung noch fanden, ausgelassen. Diese werden in Form von User Stories und Einträgen im Product Backlog festgehalten.\\
+
+\textbf{Product Goal PhileTipTip}:\\
+Schaffung eines digitales Systems, das es Mietern und Eigentümern ermöglicht, Auffälligkeiten auf Grünflächen einfach und effizient zu melden, um eine gezielte Instandhaltung durch das Außenteam sicherstellen zu können.\\
+
+Der Scrum Guide gibt nicht explizit vor, wie die Einträge auszusehen haben, mit denen das Product Backlog gefüllt werden soll, aber ein bewährtes Vorgehen ist die Verwendung von User Stories, die in kurzen, gut verständlichen Sätzen darlegen, Wer Was Warum möchte. Aus diesen User Stories (die, wenn sie größer ausfallen als Epics bezeichnet und vor der Bearbeitung zerlegt werden müssen) setzt sich dann (zusammen mit dem Product Goal) das Product Backlog zusammen.
+
+\subsubsection{User Stories}
+\label{subsec:userStories}
+\begin{table}[ht]
+    \centering
+    \begin{tabularx}{\textwidth}{|X|X|X|} 
+        \hline
+        Als [Rolle] & möchte ich [Funktionalität] & damit [Grund]\\
+        \hline
+        Mieter / Eigentümer & Schädlingsbefall / Unkrautbewuchs melden können & die Gärtner diesen zeitnah beseitigen\\
+        \hline
+        Landschaftsarchitekt & Mietermeldungen einsehen können & zu analysieren und Handlungsanweisungen geben zu können\\
+        \hline
+        Landschaftsarchitekt & Meldungen als Arbeitsanweisung an mein Team weiterleiten können & arbeiten zu koordinieren\\
+        \hline
+        Landschaftsarchitekt & einsehen können, woran mein Team gerade arbeitet & zu priorisieren und gegebenenfalls einzugreifen\\
+        \hline
+        Gärtner & einsehen können, wo ich arbeiten soll & den Einsatzort schnell finde \\
+        \hline
+        Gärtner & einsehen können, woran ich arbeiten soll & die Arbeit vorbereiten kann (passenede Herbi/Pestizide) \\
+        \hline
+        Abteilungsleiter Aussenarbeiten& einsehen können, woran die verschiedenen Teams gerade arbeiten & Arbeiten zu koordinieren und Absprachen mit den Landschaftsarchitekten halten zu können.\\
+        \hline
+        Abteilungsleiter Aussenarbeiten& die Meldungen über Befall und Bewuchs einsehen können & eventuelle Muster zu erkennen und großflächige Ausbreitung von Unkraut und Schädlingen zu verhindern.\\
+        \hline
+    \end{tabularx}
+    \caption{Ausgewählte User Stories}
+    \label{tab:userStories}
+\end{table}
+
+Die erste User Story kombiniert zwei Anwendungsfälle und zwei Rollen, damit sich die Entwickler bewusst sind, dass sie diese Funktionalität sowohl für Mieter als auch für Eigentümer zur Verfügung stellen müssen. Noch steht nicht konkret fest, wie sich die Anforderungen dieser beiden Nutzergruppen unterscheiden, das kann sich durch Backlog Refinement oder durch in Sprint Reviews gewonnenen Erfahrungen noch ändern. In diesem Fall müsste diese Story konkretisiert oder aufgespalten werden.\\
+
+Ebenso verhält es sich mit dem zweiten Teil - die Funktionalität Schädlingsbefall oder Unkrautbewuchs melden zu können wurde in einer einzelnen User Story erfasst. Auch hier könnte es notwendig sein, diese Funktionalität zu spalten doch im Bestreben das Product Backlog übersichtlich zu halten, wurden diese Angaben zunächst in einer gemeinsamen Story erfasst.\\
+
+Die nachfolgenden Stories stehen jeweils für sich, sie beziehen sich jeweils auf einzelne Rollen und Anwendungsfälle, aber auch in diesen Fällen kann ein Refinement im Laufe des Projekts notwendig sein.
+  
+%https://scrumguide.de/user-story/
+%https://www.fhnw.ch/plattformen/iwi/2021/04/07/was-bedeuten-backlog-userstory/

@@ -1,0 +1,40 @@
+\section{Überlegungen zum Technologiestack und der Toolchain}
+\label{Technologiestack}
+
+Für die Umsetzung der geplanten Anwendungen gibt es mehre Optionen. Die eingesetzten Technologien, Programmiersprachen und Frameworks bezeichnet man als Technologiestack oder Techstack. Da die Entwicklungsabteilung der IT neu aufgebaut wird, handelt es sich hierbei auch um eine Grundsatzentscheidung, denn obwohl es möglich ist, Folgeprojekte mit einem anderen Techstack durchzuführen hat ein etabliertes und bewährtes Konzept viele Vorteile, vor allem die gewonnen Erfahrung der Mitarbeiter.\\
+
+\subsection{Auswahl der Programmiersprache}
+
+Da viele der Entscheidungen bezüglich der einzusetzenden Anwendungen und Technologien von der verwendeten Programmiersprache Abhängig sind, muss diese Entscheidung getroffen werden, bevor weitere Überlegungen angestellt werden können. Durch den geplanten Anwendungsfall und die Ausbildung der Mitarbeiter der Informationstechnologie Abteilung wurde die Auswahl auf Objektorientierte Programmiersprachen beschränkt, so werden Sprachen, die einem anderen Paradigma folgen wie zum Beispiel funktionale Sprachen nicht in Betracht gezogen.\\
+
+Die Programmiersprache für den Kern der Anwendungen muss einige Anforderungen erfüllen:
+\begin{itemize}
+  \item Plattformunabhängigkeit (PC, Android und IOS Systeme)
+  \item Stabilität und Sicherheit
+  \item Zukunftssicherheit
+  \item Flexibilität und leichte Zugänglichkeit
+\end{itemize}
+
+Aufgrund dieser Anforderungen wurden die neuen Mitarbeiter der Informationstechnologie Abteilung zu einem Workshop eingeladen, der im Vorfeld des eigentlichen Projekts stattfand. Aufgrund der Tragweite der zu treffenden Entscheidung wurde das Format des Lightning Talk gewählt, bei dem jeder Mitarbeiter seine bevorzugte Programmiersprache vorstellen und deren Vorteile herausstellen konnte, moderiert wurde dieser Workshop von Frau Mareike Strauss, die darauf achtete, dass die festgelegte Redezeit nicht überzogen wurde und jeder Teilnehmer gleichberechtigt seine Meinung einbringen konnte.\\ 
+
+Unter den vorgestellten Sprachen befanden sich unter anderem:
+
+\begin{itemize}
+  \item Python, C++, Kotlin
+  \item Javascript, Java, {C\#}
+\end{itemize}
+
+Python hat insbesondere durch die rasante Entwicklung der KI in den letzten Jahren an Bedeutung gewonnen, die Sprache ist relativ leicht zu erlernen und durch eine große Menge an verfügbaren Plugins und Erweiterungen auf viele Anwendungsfälle anpassbar. Allerdings erfüllt Python nicht die gewünschte Zukunftssicherheit, da bereits beim Wechsel von Version 2.7 auf 3.0 Änderungen vorgenommen wurden, die die Abwärtskompatibilität opfern um Optimierungen an der Sprache vorzunehmen. Für den geplanten langfristigen Einsatz einer komplexen Codebasis ist eine solide Kompatibilität über Versionen hinweg jedoch wichtig, da sonst ein notwendiges Update auf eine neue Version langwierige und fehleranfällige Anpassungen nach sich ziehen würde.\\
+
+C++ ist eine gut entwickelte und mächtige Programmiersprache, die vor allem für Hardwarenahe Programmierung eingesetzt wird. Allerdings wird sie (gerade im Vergleich zu moderneren Programmiersprachen als umständlich und kompliziert empfunden. Viele der Teilnehmer schreckte gerade das Konzept der Zeiger und der Header ab, was im Vergleich zu anderen vorgestellten Sprachen von den Workshopteilnehmern als umständlich und kompliziert empfunden wurde. Zudem kann die Speicherverwaltung in C++ gerade für unerfahrene Programmierer schnell zu Fehlern führen, die die gewünschte Stabilität der App gefährden würden.\\
+
+Ein weiterer Vorschlag war es, PhileTipTip als Web-App auf Javascript Basis unter Verwendung von unterschiedlichen Javascript Frameworks (wie React und Next.js) für Front- und Backend umzusetzen. Ein Vorteile bei diesem Vorgehen ist, dass die App unabhängig von Apple und Android auf Mobilgeräte veröffentlich werden kann, da die Nutzer über einen Browser ihrer Wahl auf eine Webseite zugreifen, ohne eine App aus dem Playstore (Android) oder App Store (Apple) herunterladen zu müssen. Gegen diesen Vorschlag spricht der höhere Aufwand, sowohl die Scripte an sich als auch den Server gegen Zugriffe und Manipulation abzusichern, was zwar möglich, aber mangels Erfahrung der Mitarbeiter nicht ohne weiteres umsetzbar wäre.\\
+
+Die Entscheidung fiel nach einer Abstimmung auf Java. Zum einen ist die weite Verbreitung und die Stabilität ein großer Vorteil, es gibt zahlreiche ausgereifte Entwicklungsumgebungen und Plugins für viele Problemstellungen. Durch die große Community ist es sehr wahrscheinlich, schnelle Hilfestellung auf eventuelle Probleme und Antworten auf auftretende Fragen zu erhalten.\\
+
+Ein weiterer Vorteil ist, dass Java gerade im Vergleich zu C++ relativ einsteigerfreundliche, aber dennoch mächtige Programmiersprache ist. Gegenüber Python ist die stärkere Objektorientierung des Sprachkerns ein Vorteil für die Planung und Umsetzung der Systeme, außerdem bietet der LTS (Long Term Support) von Oracle eine Zukunftssicherheit, die bei Versionswechseln von Python nicht unbedingt vorrausgesetzt ist. Gegenüber Kotlin liegen die Vorteile an der weiten Verbreitung und langen Historie der Sprache, die große Community und zahlreichen Frameworks und Plugins. Sollte in der Zukunft die Entscheidung getroffen werden, auf Kotlin umzusteigen wäre dieser Schritt durch die Interoperationalität möglich.\\
+
+Obwohl {C\#} Java in vielen Aspekten stark ähnelt wurde die Entscheidung dennoch für Java getroffen, da nicht geplant wurde, das .Net Ökosystem und verwandte Microsoft Technologien (wie Asp.Net oder Azure) einzusetzen. Durch die starke Ähnlichkeit der Sprachen ist ein Wechsel für zukünftige Projekte, die eine dieser Technologien verwenden sollen mit geringem Aufwand möglich.\\
+
+
+\input{E_F_004_001_Techstack_Toolchain}

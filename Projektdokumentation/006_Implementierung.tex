@@ -1,0 +1,41 @@
+\section{Implementierung}
+
+\subsection{Codierstandards}
+\subsection{Best Practices und Namenskonventionen}
+
+Die Entwicklung der App PhileTipTip folgt klar definierten Codierstandards, um die Lesbarkeit, Wartbarkeit und Skalierbarkeit des Codes sicherzustellen. Die Einhaltung dieser Richtlinien ermöglicht eine konsistente Struktur des Quellcodes, erleichtert die Zusammenarbeit im Team und minimiert potenzielle Fehlerquellen.
+
+\subsubsection{Konsequentes Einsetzen der Objektorientierung und Entwurfsmuster}
+Die App wird vollständig nach dem Prinzip der Objektorientierten Programmierung (OOP) entwickelt. Dies bedeutet, dass alle funktionalen Bereiche in Klassen und Objekte unterteilt werden, um die Wiederverwendbarkeit und Modularität zu gewährleisten. Zudem kommen bewährte Entwurfsmuster wie das Singleton-Pattern (für die zentrale Verwaltung der Datenbankinstanz) und das Factory-Pattern (zur dynamischen Objekterstellung) zum Einsatz, um typische Aufgabenstellungen effizient zu lösen und den Code robust und flexibel zu halten.
+
+\subsubsection{Modularisierung und Anwendung der SOLID-Prinzipien}
+Ein zentrales Element der Architektur ist die strikte Modularisierung des Codes. Jede Funktionalität wird in klar abgegrenzten Modulen implementiert, die für sich unabhängig getestet und weiterentwickelt werden können. Diese Trennung fördert die Wiederverwendbarkeit von Code und erleichtert Erweiterungen. Zusätzlich wird die Entwicklung konsequent an den SOLID-Prinzipien ausgerichtet:
+\begin{itemize}
+    \item Single Responsibility Principle (SRP):Jede Klasse erfüllt nur eine klar definierte Aufgabe.
+    \item Open-Closed Principle (OCP):*Klassen und Module sind offen für Erweiterungen, aber geschlossen für Änderungen, um unnötige Anpassungen im bestehenden Code zu vermeiden.
+    \item Liskov Substitution Principle (LSP): Objekte von Unterklassen können durch Objekte der Oberklasse ersetzt werden, ohne dass das Verhalten der Anwendung beeinträchtigt wird.
+    \item Interface Segregation Principle (ISP): Schnittstellen werden klein und spezifisch gehalten, um unnötige Abhängigkeiten zu vermeiden.
+    \item Dependency Inversion Principle (DIP): Abhängigkeiten werden auf Abstraktionen statt auf konkrete Implementierungen aufgebaut, um die Flexibilität des Codes zu erhöhen.
+\end{itemize}
+
+\subsubsection{Kommentar- und Formatierungsrichtlinien}
+Um den Code für alle Entwickler verständlich und nachvollziehbar zu gestalten, werden klare Kommentar- und Formatierungsrichtlinien beachtet. Kommentare erklären nicht nur den Zweck des Codes, sondern auch komplexe Abläufe, Algorithmen oder wichtige Entscheidungen bei der Implementierung. Dabei wird insbesondere auf die Prägnanz und Relevanz der Kommentare geachtet.
+
+Bei der Formatierung folgen wir gängigen Konventionen, wie:
+\begin{itemize}
+    \item Einheitliche Einrückungen (z.B. 4 Leerzeichen pro Ebene).
+    \item Sinnvolle Benennung von Variablen und Methoden nach dem CamelCase-Format.
+    \item Konsistenter Einsatz von Leerzeilen und Absätzen zur logischen Gliederung des Codes.
+    \item Begrenzung der Zeilenlänge, um die Lesbarkeit auf verschiedenen Bildschirmen zu gewährleisten.
+\end{itemize}
+
+Durch diese Maßnahmen wird sichergestellt, dass der Code nicht nur funktional korrekt ist, sondern auch für andere Entwickler leicht zu verstehen und weiterzuentwickeln ist.
+
+\subsection{Feature-Entwicklung}
+Schwerpunkte und iterative Entwicklung.
+
+\subsection{Tests}
+\begin{itemize}
+    \item Unit-Tests und UI-Tests.
+    \item Teststrategie für die App.
+\end{itemize}
