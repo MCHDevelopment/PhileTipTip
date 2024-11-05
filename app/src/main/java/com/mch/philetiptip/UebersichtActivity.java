@@ -33,7 +33,6 @@ public class UebersichtActivity extends MeldungsprozessActivity {
 
         // Fragmente einmalig erstellen
         meldungsUebersichtFragment = new MeldungsUebersichtFragment();
-        meldungsUebersichtFragment = new MeldungsUebersichtFragment();
 
         //Fuer das erste Fragment findet kein Aufruf der Schirmwechsel Funktion statt
         currentSchirm = EUebersichtSchirm.Uebersicht;

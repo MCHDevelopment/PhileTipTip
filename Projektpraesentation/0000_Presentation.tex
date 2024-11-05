@@ -1,0 +1,74 @@
+%----------------------------------------------------%
+%           Written by Gaurav Gupta                  %
+%    SC21B026, Aerospace Engineering (2021 Batch)    %
+%       Inspired by the CALTECH Beamer Theme         %
+%----------------------------------------------------%
+
+\documentclass[hyperref={bookmarks=false},aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+
+%-------------------------Packages------------------------
+\usepackage[utf8]{inputenc}
+\usepackage{subcaption}
+\usepackage{amsmath}
+%---------------------------------------------------------
+% -----------Define theme and color scheme----------------
+
+\usetheme[sidebarleft]{IIST}  % 3 options: minimal, sidebarleft, sidebarright
+
+% ---------Information on the title page------------------
+	\input{0001_Deckblatt}
+%------------------------------------------------------------
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the beginning of each section and highlights the current section:
+
+% \AtBeginSection[]
+% {
+%   \begin{frame}
+%     \frametitle{Table of Contents}
+%     \tableofcontents[currentsection]
+%   \end{frame}
+% }
+%------------------------------------------------------------
+
+\begin{document}
+
+\frame{\titlepage}  % Creates title page
+
+%--------table of contents after title page---------------
+\begin{frame}
+\frametitle{Agenda}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+
+\section{Einleitung}
+	\input{0005_Problemstellung}
+	\input{0006_Loesungsansatz}
+
+%---------------------------------------------------------
+
+\section{Vorbereitung}
+	\input{0007_BPM}
+	\input{0012_Anforderungsanalyse}
+	\input{0013_UserStories}
+	
+%---------------------------------------------------------
+
+\section{Umsetzung}
+	\input{0009_Iterativ}
+	\input{N003_Jira}
+	\input{N004_GitGUI}
+
+%---------------------------------------------------------
+
+\section{Resultat}
+	\input{N001_Workflow}
+	\input{N002_PhileAdmin}
+	\input{N005_PhileAdminErfassung}
+
+%---------------------------------------------------------
+
+
+\end{document}
