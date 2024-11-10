@@ -34,28 +34,45 @@ class MeldungMainActivity{
 -schirmWechsel(Fragment fragment): void
 -projektEintragen(): void
 }
-
-class PhileTipTipMain{
--instance: PhileTipTipMain
--MeldungsHolder: MeldungsHolder
--nutzer: Person
--context: Context
-
--PhileTipTipMain(): PhileTipTipMain
-+getInstance(): PhileTipTipMain
-+initUserData(int idNumber): void
-+initApplicationContext(Context context): void
-+getMeldungsHolder(): MeldungsHolder
+class MeldungDateneingabeFragment{
+-editTextMeldung: EditText;
+-typeSpinner: Spinner;
+-meldung: Meldung;
++onCreateView(LayoutInflater inflater,...): View
+-configureSpinner(View view): void;
+-configureTextFields(View view): void;
+-configureMeldungsInput(View view): void;
++fuelleMeldung(): void;
+-getSelectedMeldungsart(): EMeldungsart
 }
 
-class MainActivity extends AppCompatActivity
-class MenueActivity extends AppCompatActivity
+class AdresseingabeFragment{
+-editTextOrt: EditText;
+-editTextPostleitzahl: EditText;
+-editTextHausnummer: EditText;
+-editTextStrasse: EditText;
+-meldung: Meldung;
++onCreateView(LayoutInflater inflater,...): View;
+-configureTextFields(View view): void;
+-configureButtons(View view): void;
+-configureGPSButton(View view): void;
+-fuelleAdresse(): void;
+-void getCurrentLocation(): void;
+-getAddressFromLocation(double latitude, double longitude): void;
+-requestLocationPermission(): void;
+}
 
-
-enum EMeldungsart {
-Sonstige
-Schaedlingsbefall
-Unkrautbewuchs
+class FotoFragment{
+-meldung: Meldung;
+-photoUri: Uri;
+-galleryLauncher ActivityResultLauncher<Intent>;
+-onCreateView(LayoutInflater inflater,...) : View
+-configureButtons(View view): void;
+-checkPermissionAndOpenGallery(): void;
+-openGallery(): void;
+-checkCameraPermissionAndOpen(): void;
+-openCamera(): void;
+-createImageUri(): Uri;
 }
 
 enum EMeldungsschirm {
@@ -64,4 +81,33 @@ Adresse
 Foto
 Pruefen
 }
+
+class PruefenFragment{
+-textMeldung: TextView;
+-textAdresse: TextView;
+-meldung: Meldung;
+-vorschauBild: ImageView;
++onCreateView(LayoutInflater inflater,...):View;
+-configureTextviews(View view): void;
+-configureButtons(View view): void;
+-configureMeldungEditButton(View view): void;
+-configureAdressEditButton(View view): void;
+-configureImageEditButton(View view): void;
+-configureBild(View view): void;
+-fuelleInhalte(): void;
+-fuelleBild(): void;
+}
+
+class MainActivity extends AppCompatActivity
+class MenueActivity extends AppCompatActivity
+class MeldungMainActivity extends AppCompatActivity
+class MeldungDateneingabeFragment extends Fragment
+class AdresseingabeFragment extends Fragment
+class FotoFragment extends Fragment
+class PruefenFragment extends Fragment
+
+MeldungMainActivity --> MeldungDateneingabeFragment
+MeldungMainActivity --> AdresseingabeFragment
+MeldungMainActivity --> FotoFragment
+MeldungMainActivity --> PruefenFragment
 @enduml

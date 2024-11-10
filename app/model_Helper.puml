@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class PhileTipTipMain{
+-instance: PhileTipTipMain
+-MeldungsHolder: MeldungsHolder
+-nutzer: Person
+-context: Context
+
+-PhileTipTipMain(): PhileTipTipMain
++getInstance(): PhileTipTipMain
++initUserData(int idNumber): void
++initApplicationContext(Context context): void
++getMeldungsHolder(): MeldungsHolder
+}
+
+class MeldungsHolder{
+-meldungen ArrayList<Meldung>;
++addMeldung(Meldung meldung): void
++syncMeldungen(): void
+}
+
+class Meldung{
+-meldungsAdresse: Adresse;
+-meldungsart: EMeldungsart;
+-meldungstext: String;
+-meldungsId: int;
+
++Meldung(int melderId): Meldung;
++resetMeldung(): void;
++getMeldungsart(): EMeldungsart;
++setMeldungsart(EMeldungsart meldungsart): void
++getMeldungstext(): void
++getMeldungAdresse(): Adresse
++setMeldungsAdresse(Adresse meldungsAdresse) void
+}
+
+enum EMeldungsart {
+Sonstige
+Schaedlingsbefall
+Unkrautbewuchs
+}
+
+class Meldung implements Serializable
+
+PhileTipTipMain --> MeldungsHolder
+MeldungsHolder --> Meldung
+@enduml
