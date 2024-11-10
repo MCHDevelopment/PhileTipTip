@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MainActivity{
+#onCreate(): void
+}
+
+class MenueActivity{
+#onCreate(): void
+-configureButtons(): void
+-configureMeldungButton(): void
+-configureUebersichtButton(): void
+-configureImpressumButton(): void
+-configureKontaktButton(): void
+-configureDatenschutzButton(): void
+}
+
+class MeldungMainActivity{
+-dateneingabeFragment: MeldungDateneingabeFragment;
+-adresseingabeFragment: AdresseingabeFragment;
+-fotoFragment: FotoFragment;
+-pruefenFragment: PruefenFragment;
+
+#onCreate(): void
+-configureButtons(): void
+-configureHomeButton(): void
+-configureWeiterButton(): void
+-configureZurueckButton(): void
+-configureSubmitButton(): void
+-wechselZumNaechstenSchirm(): void
+-wechselZumVorherigemSchirm(): void
++zeigeFragment(EMeldungsschirm zielSchirm): void
+-setzeButtonSichtbarkeit(): void
+-schirmWechsel(Fragment fragment): void
+-projektEintragen(): void
+}
+
+class PhileTipTipMain{
+-instance: PhileTipTipMain
+-MeldungsHolder: MeldungsHolder
+-nutzer: Person
+-context: Context
+
+-PhileTipTipMain(): PhileTipTipMain
++getInstance(): PhileTipTipMain
++initUserData(int idNumber): void
++initApplicationContext(Context context): void
++getMeldungsHolder(): MeldungsHolder
+}
+
+class MainActivity extends AppCompatActivity
+class MenueActivity extends AppCompatActivity
+
+
+enum EMeldungsart {
+Sonstige
+Schaedlingsbefall
+Unkrautbewuchs
+}
+
+enum EMeldungsschirm {
+ArtUndText
+Adresse
+Foto
+Pruefen
+}
+@enduml

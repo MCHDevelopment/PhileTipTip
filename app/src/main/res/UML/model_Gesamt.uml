@@ -1,0 +1,100 @@
+@startuml
+
+class Nutzer{
+    -nutzerId: int
+    -nutzerTyp: ENutzertyp
+	-vorname: String
+	-nachname: String
+
+    +getVorname(): String
+    +setVorname(String kontaktdaten): void
+    +getNachname(): String
+    +setNachname(String kontaktdaten): void
+}
+
+abstract class Person {
+    -kontaktId: int
+    -kontaktdaten: Kontaktdaten
+	
+    +getKontaktdaten(): Kontaktdaten
+    +setKontaktdaten(Kontaktdaten kontaktdaten): void
+    +getKontaktId(): int
+    +setKontaktId(int kontaktId): void
+}
+
+class Mitarbeiter {
+    -mitarbeiterId: int
+	
+    +getMitarbeiterId(): int
+    +setMitarbeiterId(int mitarbeiterId): void
+}
+
+class TeamLeiter {
+    -teamleiterId: int
+	
+    +gettTeamleiterId(): int
+    +setTeamleiterId(int teamleiterId): void
+}
+
+class Mieter {
+    -mieterID: int
+	
+    +getMieterID(): int
+    +setMieterID(int mieterID): void
+}
+
+class Eigentuemer {
+    -eigentuemerID: int
+	
+    +getEigentuemerID(): int
+    +setEigentuemerID(int eigentuemerID): void
+}
+
+class Wohnanlage{
+    -wohnanlageId: int
+	-wohnanlagenName: String
+    -adressId: int
+}
+
+class Gebaeude{
+    -gebaeudeId: int
+	-gebaeudeName: String
+    -wohnanlageId: int
+	-adressId: int
+}
+
+class Wohnung {
+    -wohnungId: int
+    -gebaeudeId: int
+	-wohnungsnummer: int
+	-wohnflaeche: float
+}
+
+class Person extends Nutzer
+class Mieter extends Person
+class Eigentuemer extends Person
+class Mitarbeiter extends Person
+class TeamLeiter extends Mitarbeiter
+
+class Kontaktdaten {
+    +adresse: Adresse
+    +telefonnummer: String
+    +email: String
+}
+
+class Adresse {
+    +straße: String
+    +hausnummer: String
+    +plz: String
+    +stadt: String
+}
+
+' Verbindungen
+Person --> Kontaktdaten
+Kontaktdaten --> Adresse
+Wohnanlage --> Gebaeude
+Gebaeude --> Wohnung
+Wohnanlage --> Adresse
+Gebaeude --> Adresse
+
+@enduml
